@@ -82,6 +82,7 @@
 			children = (
 				865CD8732C1578C500D7E9C6 /* App */,
 				865CD87A2C157D6F00D7E9C6 /* Constants */,
+				865CD89D2C16C00B00D7E9C6 /* APIManager */,
 				865CD88A2C16B66700D7E9C6 /* Database */,
 				865CD8822C15876800D7E9C6 /* Model */,
 				865CD87F2C15802600D7E9C6 /* View */,
@@ -155,6 +156,13 @@
 				865CD88F2C16B6A900D7E9C6 /* EpisodeEntity.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		865CD89D2C16C00B00D7E9C6 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
