@@ -10,7 +10,7 @@ import Foundation
 struct Character: Decodable {
     let id: Int
     let name: String
-    let status: CharacterStatus
+    let status: Status
     let species: String
     let type: String
     let gender: Gender
@@ -22,7 +22,7 @@ struct Character: Decodable {
     let created: String
 }
 
-enum CharacterStatus: String, Decodable {
+enum Status: String, Decodable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown = "unknown"

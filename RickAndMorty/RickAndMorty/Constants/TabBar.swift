@@ -9,7 +9,7 @@ import Foundation
 import UIKit.UIImage
 
 enum TabBar {
-    static let characterIcon = UIImage(systemName: "person.3")
+    static let characterIcon = UIImage(systemName: "person")
     static let locationIcon = UIImage(systemName: "map")
     static let episodeIcon = UIImage(systemName: "sparkles.tv")
     
