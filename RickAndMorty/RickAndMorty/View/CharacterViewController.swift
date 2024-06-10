@@ -7,11 +7,13 @@
 
 import UIKit
 
-class CharacterViewController: UIViewController {
+final class CharacterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
+        //navigationItem.title = TextData.characterTitleVC.rawValue
+        title = TextData.characterTitleVC.rawValue
     }
 
 

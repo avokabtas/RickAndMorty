@@ -7,12 +7,14 @@
 
 import UIKit
 
-class LocationViewController: UIViewController {
+final class LocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .green
+        //navigationItem.title = TextData.locationTitleVC.rawValue
+        title = TextData.locationTitleVC.rawValue
         
     }
     

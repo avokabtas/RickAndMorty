@@ -7,12 +7,14 @@
 
 import UIKit
 
-class EpisodeViewController: UIViewController {
+final class EpisodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .orange
+        //navigationItem.title = TextData.episodeTitleVC.rawValue
+        title = TextData.episodeTitleVC.rawValue
     }
     
 
