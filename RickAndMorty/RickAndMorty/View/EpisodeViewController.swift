@@ -12,20 +12,30 @@ protocol IEpisodeUI: AnyObject {
 }
 
 final class EpisodeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .orange
-        title = TextData.episodeTitleVC.rawValue
+    var presenter: IEpisodePresenter
+    
+    init(presenter: IEpisodePresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .orange
+        title = TextData.episodeTitleVC.rawValue
+        presenter.loadEpisodes()
+    }
 }
 
 extension EpisodeViewController: IEpisodeUI {
     func update(with episodes: [EpisodeEntity]) {
-        
+        episodes.forEach { episode in
+            print(episode.airDate)
+        }
     }
 }

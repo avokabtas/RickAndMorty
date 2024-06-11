@@ -18,7 +18,7 @@ final class TabBarController: UITabBarController {
         
         let characterVC = Assembly.createCharacterModule()
         let locationVC = Assembly.createLocationModule()
-        let episodeVC = EpisodeViewController()
+        let episodeVC = Assembly.createEpisodeModule()
 
         characterVC.navigationItem.largeTitleDisplayMode = .automatic
         locationVC.navigationItem.largeTitleDisplayMode = .automatic

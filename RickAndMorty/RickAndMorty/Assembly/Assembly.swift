@@ -27,12 +27,12 @@ enum Assembly {
         return viewController
     }
    
-//    static func createEpisodeModule() -> UIViewController {
-//        let networkService = NetworkService()
-//        let realmService = RealmService.shared
-//        let presenter = EpisodePresenter(ui: nil, networkService: networkService, databaseService: realmService)
-//        let viewController = EpisodeViewController(presenter: presenter)
-//        presenter.ui = viewController
-//        return viewController
-//    }
+    static func createEpisodeModule() -> UIViewController {
+        let networkService = NetworkService()
+        let realmService = RealmService.shared
+        let presenter = EpisodePresenter(ui: nil, networkService: networkService, databaseService: realmService)
+        let viewController = EpisodeViewController(presenter: presenter)
+        presenter.ui = viewController
+        return viewController
+    }
 }
