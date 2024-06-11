@@ -8,29 +8,30 @@
 import Foundation
 import UIKit
 
+/// Сборщик для создания модулей
 enum Assembly {
     static func createCharacterModule() -> UIViewController {
-        let networkService = NetworkService()
-        let realmService = RealmService.shared
-        let presenter = CharacterPresenter(ui: nil, networkService: networkService, databaseService: realmService)
+        let networkService = DependencyContainer.shared.networkService
+        let databaseService = DependencyContainer.shared.databaseService
+        let presenter = CharacterPresenter(ui: nil, networkService: networkService, databaseService: databaseService)
         let viewController = CharacterViewController(presenter: presenter)
         presenter.ui = viewController
         return viewController
     }
     
     static func createLocationModule() -> UIViewController {
-        let networkService = NetworkService()
-        let realmService = RealmService.shared
-        let presenter = LocationPresenter(ui: nil, networkService: networkService, databaseService: realmService)
+        let networkService = DependencyContainer.shared.networkService
+        let databaseService = DependencyContainer.shared.databaseService
+        let presenter = LocationPresenter(ui: nil, networkService: networkService, databaseService: databaseService)
         let viewController = LocationViewController(presenter: presenter)
         presenter.ui = viewController
         return viewController
     }
    
     static func createEpisodeModule() -> UIViewController {
-        let networkService = NetworkService()
-        let realmService = RealmService.shared
-        let presenter = EpisodePresenter(ui: nil, networkService: networkService, databaseService: realmService)
+        let networkService = DependencyContainer.shared.networkService
+        let databaseService = DependencyContainer.shared.databaseService
+        let presenter = EpisodePresenter(ui: nil, networkService: networkService, databaseService: databaseService)
         let viewController = EpisodeViewController(presenter: presenter)
         presenter.ui = viewController
         return viewController

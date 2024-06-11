@@ -15,19 +15,19 @@ protocol ILocationPresenter {
 final class LocationPresenter: ILocationPresenter {
     weak var ui: ILocationUI?
     private let networkService: INetworkService
-    private let realmService: IDatabaseService
+    private let databaseService: IDatabaseService
     
     init(ui: ILocationUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
         self.networkService = networkService
-        self.realmService = databaseService
+        self.databaseService = databaseService
     }
     
     func loadLocations() {
         networkService.fetchLocations { [weak self] result in
             switch result {
             case .success(let locations):
-                self?.realmService.saveLocations(locations)
+                self?.databaseService.saveLocations(locations)
                 self?.fetchLocationsFromRealm()
             case .failure(let error):
                 print("Failed to fetch locations: \(error.localizedDescription)")

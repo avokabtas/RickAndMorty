@@ -15,19 +15,19 @@ protocol ICharacterPresenter: AnyObject {
 final class CharacterPresenter: ICharacterPresenter {
     weak var ui: ICharacterUI?
     private let networkService: INetworkService
-    private let realmService: IDatabaseService
+    private let databaseService: IDatabaseService
     
     init(ui: ICharacterUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
         self.networkService = networkService
-        self.realmService = databaseService
+        self.databaseService = databaseService
     }
     
     func loadCharacters() {
         networkService.fetchCharacters { [weak self] result in
             switch result {
             case .success(let characters):
-                self?.realmService.saveCharacters(characters)
+                self?.databaseService.saveCharacters(characters)
                 self?.fetchCharactersFromRealm()
             case .failure(let error):
                 print("Failed to fetch characters: \(error.localizedDescription)")
