@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ILocationUI: AnyObject {
+    func update(with locations: [LocationEntity])
+}
+
 final class LocationViewController: UIViewController {
 
     override func viewDidLoad() {

@@ -27,6 +27,9 @@
 		865CD8B52C16E38300D7E9C6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 865CD8B42C16E38300D7E9C6 /* RealmSwift */; };
 		865CD8B82C16E7EC00D7E9C6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8B72C16E7EC00D7E9C6 /* NetworkService.swift */; };
 		865CD8BB2C16E80400D7E9C6 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8BA2C16E80400D7E9C6 /* RealmService.swift */; };
+		865CD8BD2C17303C00D7E9C6 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8BC2C17303C00D7E9C6 /* APIResponse.swift */; };
+		865CD8C62C17369E00D7E9C6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8C52C17369E00D7E9C6 /* Endpoint.swift */; };
+		865CD8C92C173DE700D7E9C6 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8C82C173DE700D7E9C6 /* Assembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		865CD8912C16B7FE00D7E9C6 /* TextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		865CD8B72C16E7EC00D7E9C6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		865CD8BA2C16E80400D7E9C6 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		865CD8BC2C17303C00D7E9C6 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		865CD8C52C17369E00D7E9C6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		865CD8C82C173DE700D7E9C6 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 				865CD8822C15876800D7E9C6 /* Model */,
 				865CD8A02C16DCB500D7E9C6 /* Service */,
 				865CD87F2C15802600D7E9C6 /* View */,
+				865CD8C72C173DBE00D7E9C6 /* Assembly */,
 				865CD8832C15876E00D7E9C6 /* Presenter */,
 				865CD87D2C157FAF00D7E9C6 /* Resources */,
 				865CD86D2C1578BA00D7E9C6 /* Info.plist */,
@@ -110,6 +117,7 @@
 			children = (
 				865CD87B2C157D8800D7E9C6 /* TabBar.swift */,
 				865CD8912C16B7FE00D7E9C6 /* TextData.swift */,
+				865CD8C52C17369E00D7E9C6 /* Endpoint.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -137,8 +145,8 @@
 		865CD8822C15876800D7E9C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				865CD8BE2C1734BD00D7E9C6 /* Domain */,
 				865CD88A2C16B66700D7E9C6 /* Database */,
-				865CD8A12C16DCF300D7E9C6 /* API Model */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,19 +177,10 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		865CD8A12C16DCF300D7E9C6 /* API Model */ = {
-			isa = PBXGroup;
-			children = (
-				865CD8862C16B53C00D7E9C6 /* Character.swift */,
-				865CD8842C16B53300D7E9C6 /* Location.swift */,
-				865CD8882C16B54C00D7E9C6 /* Episode.swift */,
-			);
-			path = "API Model";
-			sourceTree = "<group>";
-		};
 		865CD8B62C16E7C400D7E9C6 /* Network Service */ = {
 			isa = PBXGroup;
 			children = (
+				865CD8BC2C17303C00D7E9C6 /* APIResponse.swift */,
 				865CD8B72C16E7EC00D7E9C6 /* NetworkService.swift */,
 			);
 			path = "Network Service";
@@ -193,6 +192,24 @@
 				865CD8BA2C16E80400D7E9C6 /* RealmService.swift */,
 			);
 			path = "Realm Service";
+			sourceTree = "<group>";
+		};
+		865CD8BE2C1734BD00D7E9C6 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				865CD8862C16B53C00D7E9C6 /* Character.swift */,
+				865CD8842C16B53300D7E9C6 /* Location.swift */,
+				865CD8882C16B54C00D7E9C6 /* Episode.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		865CD8C72C173DBE00D7E9C6 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				865CD8C82C173DE700D7E9C6 /* Assembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +294,11 @@
 				865CD8772C157AD100D7E9C6 /* LocationViewController.swift in Sources */,
 				865CD8642C1578B800D7E9C6 /* CharacterViewController.swift in Sources */,
 				865CD8892C16B54C00D7E9C6 /* Episode.swift in Sources */,
+				865CD8C62C17369E00D7E9C6 /* Endpoint.swift in Sources */,
+				865CD8BD2C17303C00D7E9C6 /* APIResponse.swift in Sources */,
 				865CD88C2C16B68400D7E9C6 /* CharacterEntity.swift in Sources */,
 				865CD8922C16B7FE00D7E9C6 /* TextData.swift in Sources */,
+				865CD8C92C173DE700D7E9C6 /* Assembly.swift in Sources */,
 				865CD8902C16B6A900D7E9C6 /* EpisodeEntity.swift in Sources */,
 				865CD8852C16B53300D7E9C6 /* Location.swift in Sources */,
 				865CD8602C1578B800D7E9C6 /* AppDelegate.swift in Sources */,

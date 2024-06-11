@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol IEpisodeUI: AnyObject {
+    func update(with episodes: [EpisodeEntity])
+}
+
 final class EpisodeViewController: UIViewController {
 
     override func viewDidLoad() {
