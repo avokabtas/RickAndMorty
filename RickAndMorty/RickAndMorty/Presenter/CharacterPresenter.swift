@@ -17,10 +17,10 @@ class CharacterPresenter: ICharacterPresenter {
     private let networkService: INetworkService
     private let realmService: IDatabaseService
     
-    init(ui: ICharacterUI?, networkService: INetworkService, realmService: IDatabaseService) {
+    init(ui: ICharacterUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
         self.networkService = networkService
-        self.realmService = realmService
+        self.realmService = databaseService
     }
     
     func loadCharacters() {

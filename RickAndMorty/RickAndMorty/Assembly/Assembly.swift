@@ -8,27 +8,31 @@
 import Foundation
 import UIKit
 
-class Assembly {
+enum Assembly {
     static func createCharacterModule() -> UIViewController {
         let networkService = NetworkService()
         let realmService = RealmService.shared
-        let presenter = CharacterPresenter(ui: nil, networkService: networkService, realmService: realmService)
+        let presenter = CharacterPresenter(ui: nil, networkService: networkService, databaseService: realmService)
         let viewController = CharacterViewController(presenter: presenter)
         presenter.ui = viewController
         return viewController
     }
     
 //    static func createLocationModule() -> UIViewController {
-//        let ui = LocationViewController()
-//        let presenter = LocationPresenter(ui: ui)
-//        ui.presenter = presenter
-//        return ui
+//        let networkService = NetworkService()
+//        let realmService = RealmService.shared
+//        let presenter = LocationPresenter(ui: nil, networkService: networkService, databaseService: realmService)
+//        let viewController = LocationViewController(presenter: presenter)
+//        presenter.ui = viewController
+//        return viewController
 //    }
-//    
+   
 //    static func createEpisodeModule() -> UIViewController {
-//        let ui = EpisodeViewController()
-//        let presenter = EpisodePresenter(ui: ui)
-//        ui.presenter = presenter
-//        return ui
+//        let networkService = NetworkService()
+//        let realmService = RealmService.shared
+//        let presenter = EpisodePresenter(ui: nil, networkService: networkService, databaseService: realmService)
+//        let viewController = EpisodeViewController(presenter: presenter)
+//        presenter.ui = viewController
+//        return viewController
 //    }
 }
