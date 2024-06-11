@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class EpisodeEntity: Object {
+final class EpisodeEntity: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String
     @Persisted var airDate: String

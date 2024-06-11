@@ -17,7 +17,7 @@ final class TabBarController: UITabBarController {
     private func setupTabBar() {
         
         let characterVC = Assembly.createCharacterModule()
-        let locationVC = LocationViewController()
+        let locationVC = Assembly.createLocationModule()
         let episodeVC = EpisodeViewController()
 
         characterVC.navigationItem.largeTitleDisplayMode = .automatic

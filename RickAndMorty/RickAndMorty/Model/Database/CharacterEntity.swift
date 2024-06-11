@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class CharacterEntity: Object {
+final class CharacterEntity: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String
     @Persisted var status: String

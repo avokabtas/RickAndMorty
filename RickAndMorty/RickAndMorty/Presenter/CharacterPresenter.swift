@@ -12,7 +12,7 @@ protocol ICharacterPresenter: AnyObject {
     func loadCharacters()
 }
 
-class CharacterPresenter: ICharacterPresenter {
+final class CharacterPresenter: ICharacterPresenter {
     weak var ui: ICharacterUI?
     private let networkService: INetworkService
     private let realmService: IDatabaseService

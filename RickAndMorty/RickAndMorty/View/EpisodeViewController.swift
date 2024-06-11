@@ -17,10 +17,15 @@ final class EpisodeViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .orange
-        //navigationItem.title = TextData.episodeTitleVC.rawValue
         title = TextData.episodeTitleVC.rawValue
     }
     
 
 
+}
+
+extension EpisodeViewController: IEpisodeUI {
+    func update(with episodes: [EpisodeEntity]) {
+        
+    }
 }

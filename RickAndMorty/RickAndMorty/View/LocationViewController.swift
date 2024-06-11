@@ -12,15 +12,34 @@ protocol ILocationUI: AnyObject {
 }
 
 final class LocationViewController: UIViewController {
-
+    
+    var presenter: ILocationPresenter
+    
+    init(presenter: ILocationPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .green
-        //navigationItem.title = TextData.locationTitleVC.rawValue
         title = TextData.locationTitleVC.rawValue
+        presenter.loadLocations()
         
     }
     
 
+}
+
+extension LocationViewController: ILocationUI {
+    func update(with locations: [LocationEntity]) {
+        locations.forEach { location in
+            print(location.name)
+        }
+    }
 }

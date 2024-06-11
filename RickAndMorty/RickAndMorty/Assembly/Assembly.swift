@@ -18,14 +18,14 @@ enum Assembly {
         return viewController
     }
     
-//    static func createLocationModule() -> UIViewController {
-//        let networkService = NetworkService()
-//        let realmService = RealmService.shared
-//        let presenter = LocationPresenter(ui: nil, networkService: networkService, databaseService: realmService)
-//        let viewController = LocationViewController(presenter: presenter)
-//        presenter.ui = viewController
-//        return viewController
-//    }
+    static func createLocationModule() -> UIViewController {
+        let networkService = NetworkService()
+        let realmService = RealmService.shared
+        let presenter = LocationPresenter(ui: nil, networkService: networkService, databaseService: realmService)
+        let viewController = LocationViewController(presenter: presenter)
+        presenter.ui = viewController
+        return viewController
+    }
    
 //    static func createEpisodeModule() -> UIViewController {
 //        let networkService = NetworkService()

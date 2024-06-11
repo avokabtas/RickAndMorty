@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class LocationEntity: Object {
+final class LocationEntity: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String
     @Persisted var type: String

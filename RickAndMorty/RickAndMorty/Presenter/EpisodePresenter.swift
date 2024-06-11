@@ -10,3 +10,11 @@ import Foundation
 protocol IEpisodePresenter {
     func loadEpisodes()
 }
+
+final class EpisodePresenter: IEpisodePresenter {
+    func loadEpisodes() {
+        
+    }
+    
+    
+}
