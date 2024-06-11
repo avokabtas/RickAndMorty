@@ -34,6 +34,7 @@
 		865CD8CD2C18135300D7E9C6 /* LocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8CC2C18135300D7E9C6 /* LocationPresenter.swift */; };
 		865CD8CF2C18135900D7E9C6 /* EpisodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8CE2C18135900D7E9C6 /* EpisodePresenter.swift */; };
 		865CD8D12C1843F200D7E9C6 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D02C1843F200D7E9C6 /* DependencyContainer.swift */; };
+		865CD8D62C18968900D7E9C6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D52C18968900D7E9C6 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		865CD8CC2C18135300D7E9C6 /* LocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPresenter.swift; sourceTree = "<group>"; };
 		865CD8CE2C18135900D7E9C6 /* EpisodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePresenter.swift; sourceTree = "<group>"; };
 		865CD8D02C1843F200D7E9C6 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		865CD8D52C18968900D7E9C6 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				865CD87B2C157D8800D7E9C6 /* TabBar.swift */,
 				865CD8912C16B7FE00D7E9C6 /* TextData.swift */,
 				865CD8C52C17369E00D7E9C6 /* Endpoint.swift */,
+				865CD8D52C18968900D7E9C6 /* NetworkError.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				865CD8C62C17369E00D7E9C6 /* Endpoint.swift in Sources */,
 				865CD8BD2C17303C00D7E9C6 /* APIResponse.swift in Sources */,
 				865CD88C2C16B68400D7E9C6 /* CharacterEntity.swift in Sources */,
+				865CD8D62C18968900D7E9C6 /* NetworkError.swift in Sources */,
 				865CD8922C16B7FE00D7E9C6 /* TextData.swift in Sources */,
 				865CD8C92C173DE700D7E9C6 /* Assembly.swift in Sources */,
 				865CD8902C16B6A900D7E9C6 /* EpisodeEntity.swift in Sources */,

@@ -19,23 +19,23 @@ final class NetworkService: INetworkService {
     
     private func fetchData<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<[T], Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/\(endpoint)") else {
-            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            completion(.failure(NetworkError.invalidURL))
             return
         }
         
         session.dataTask(with: url) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(NetworkError.custom(error.localizedDescription)))
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                completion(.failure(NSError(domain: "Invalid response or status code", code: 0, userInfo: nil)))
+                completion(.failure(NetworkError.invalidResponse))
                 return
             }
             
             guard let data = data else {
-                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
+                completion(.failure(NetworkError.noData))
                 return
             }
             
@@ -45,7 +45,7 @@ final class NetworkService: INetworkService {
                 let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
                 completion(.success(apiResponse.results))
             } catch {
-                completion(.failure(error))
+                completion(.failure(NetworkError.invalidJSON))
             }
         }.resume()
     }
