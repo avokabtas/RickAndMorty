@@ -15,7 +15,7 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        let characterVC = CharacterViewController()
+        let characterVC = Assembly.createCharacterModule()
         let locationVC = LocationViewController()
         let episodeVC = EpisodeViewController()
 

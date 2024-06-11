@@ -7,65 +7,6 @@
 
 import Foundation
 
-//class NetworkService {
-//    static let shared = NetworkService()
-//    
-//    private init() {}
-//    
-//    func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
-//        guard let url = URL(string: "https://rickandmortyapi.com/api/character") else { return }
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            guard let data = data else { return }
-//            do {
-//                let response = try JSONDecoder().decode(APIResponse<Character>.self, from: data)
-//                completion(.success(response.results))
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }
-//        .resume()
-//    }
-//    
-//    func fetchLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
-//        guard let url = URL(string: "https://rickandmortyapi.com/api/location") else { return }
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            guard let data = data else { return }
-//            do {
-//                let response = try JSONDecoder().decode(APIResponse<Location>.self, from: data)
-//                completion(.success(response.results))
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }.resume()
-//    }
-//    
-//    func fetchEpisodes(completion: @escaping (Result<[Episode], Error>) -> Void) {
-//        guard let url = URL(string: "https://rickandmortyapi.com/api/episode") else { return }
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            guard let data = data else { return }
-//            do {
-//                let response = try JSONDecoder().decode(APIResponse<Episode>.self, from: data)
-//                completion(.success(response.results))
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }.resume()
-//    }
-//}
-
-
 protocol INetworkService {
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void)
     func fetchLocations(completion: @escaping (Result<[Location], Error>) -> Void)
@@ -88,14 +29,20 @@ final class NetworkService: INetworkService {
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NSError(domain: "Invalid response or status code", code: 0, userInfo: nil)))
+                return
+            }
+            
             guard let data = data else {
-                completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
                 return
             }
             
             do {
-                let decoder = JSONDecoder()
-                let apiResponse = try decoder.decode(APIResponse<T>.self, from: data)
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
                 completion(.success(apiResponse.results))
             } catch {
                 completion(.failure(error))

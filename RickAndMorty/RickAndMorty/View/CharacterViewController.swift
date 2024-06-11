@@ -13,52 +13,31 @@ protocol ICharacterUI: AnyObject {
 
 final class CharacterViewController: UIViewController {
     
-    let network = NetworkService()
-
+    var presenter: ICharacterPresenter
+    
+    init(presenter: ICharacterPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-        //navigationItem.title = TextData.characterTitleVC.rawValue
         title = TextData.characterTitleVC.rawValue
-        
-        network.fetchCharacters { result in
-            switch result {
-            case .success(let characters):
-                print("fetchCharacters")
-                for character in characters {
-                    print("Character: \(character.name), Status: \(character.status), Species: \(character.species), Gender: \(character.gender)")
-                }
-            case .failure(let error):
-                print("Failed to fetch characters: \(error.localizedDescription)")
-            }
-        }
-        
-        network.fetchLocations { result in
-            switch result {
-            case .success(let locations):
-                print("fetchLocations")
-                for location in locations {
-                    print("Location: \(location.name), Type: \(location.type), Dimension: \(location.dimension)")
-                }
-            case .failure(let error):
-                print("Failed to fetch locations: \(error.localizedDescription)")
-            }
-        }
-        
-        network.fetchEpisodes { result in
-            switch result {
-            case .success(let episodes):
-                print("fetchEpisodes")
-                for episode in episodes {
-                    print("Episode: \(episode.name), Air Date: \(episode.air_date), Episode: \(episode.episode)")
-                }
-            case .failure(let error):
-                print("Failed to fetch episodes: \(error.localizedDescription)")
-            }
-        }
-        
+        presenter.loadCharacters()
     }
-
 
 }
 
+extension CharacterViewController: ICharacterUI {
+    func update(with characters: [CharacterEntity]) {
+        characters.forEach { character in
+            print(character.name)
+        }
+    }
+}

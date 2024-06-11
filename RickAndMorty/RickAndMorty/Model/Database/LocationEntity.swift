@@ -13,7 +13,7 @@ class LocationEntity: Object {
     @Persisted var name: String
     @Persisted var type: String
     @Persisted var dimension: String
+    @Persisted var residents: List<String>
     @Persisted var url: String
     @Persisted var created: String
-    @Persisted var residents: List<String>
 }

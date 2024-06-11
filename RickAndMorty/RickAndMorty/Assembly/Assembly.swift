@@ -8,25 +8,27 @@
 import Foundation
 import UIKit
 
-//class Assembly {
-//    static func createCharacterModule() -> UIViewController {
-//        let view = CharacterViewController()
-//        let presenter = CharacterPresenter(view: view)
-//        view.presenter = presenter
-//        return view
-//    }
-//    
+class Assembly {
+    static func createCharacterModule() -> UIViewController {
+        let networkService = NetworkService()
+        let realmService = RealmService.shared
+        let presenter = CharacterPresenter(ui: nil, networkService: networkService, realmService: realmService)
+        let viewController = CharacterViewController(presenter: presenter)
+        presenter.ui = viewController
+        return viewController
+    }
+    
 //    static func createLocationModule() -> UIViewController {
-//        let view = LocationViewController()
-//        let presenter = LocationPresenter(view: view)
-//        view.presenter = presenter
-//        return view
+//        let ui = LocationViewController()
+//        let presenter = LocationPresenter(ui: ui)
+//        ui.presenter = presenter
+//        return ui
 //    }
 //    
 //    static func createEpisodeModule() -> UIViewController {
-//        let view = EpisodeViewController()
-//        let presenter = EpisodePresenter(view: view)
-//        view.presenter = presenter
-//        return view
+//        let ui = EpisodeViewController()
+//        let presenter = EpisodePresenter(ui: ui)
+//        ui.presenter = presenter
+//        return ui
 //    }
-//}
+}
