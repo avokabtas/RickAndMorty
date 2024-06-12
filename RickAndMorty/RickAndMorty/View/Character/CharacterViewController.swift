@@ -13,7 +13,15 @@ protocol ICharacterUI: AnyObject {
 
 final class CharacterViewController: UIViewController {
     
-    var presenter: ICharacterPresenter
+    private var presenter: ICharacterPresenter
+    private var characterView = CharacterView()
+    private let searchController = UISearchController()
+    private var characters: [CharacterEntity] = []
+    
+    // TODO: ui и detail экран
+    // высота ячеек
+    // стрелку слева
+    // поиск
     
     init(presenter: ICharacterPresenter) {
         self.presenter = presenter
@@ -25,19 +33,60 @@ final class CharacterViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = characterView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
         title = TextData.characterTitleVC.rawValue
+        setupView()
         presenter.loadCharacters()
     }
-
+    
+    private func setupView() {
+        characterView.tableView.delegate = self
+        characterView.tableView.dataSource = self
+        characterView.tableView.register(CharacterViewCell.self, forCellReuseIdentifier: CharacterViewCell.identifier)
+    }
 }
 
 extension CharacterViewController: ICharacterUI {
     func update(with characters: [CharacterEntity]) {
-        characters.forEach { character in
-            print(character.name)
+        self.characters = characters
+        DispatchQueue.main.async {
+            self.characterView.tableView.reloadData()
         }
+    }
+}
+
+extension CharacterViewController: UITableViewDelegate {
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let character = characters[indexPath.row]
+    //        let detailVC = CharacterDetailView(character: character)
+    //        navigationController?.pushViewController(detailVC, animated: true)
+    //    }
+}
+
+extension CharacterViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return characters.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterViewCell.identifier, for: indexPath)
+                as? CharacterViewCell else {
+            return UITableViewCell()
+        }
+        
+        let character = characters[indexPath.row]
+        
+        if let imageData = character.imageData, let image = UIImage(data: imageData) {
+            cell.configure(with: image, with: character.name)
+        } else {
+            cell.configure(with: nil, with: character.name)
+        }
+        
+        return cell
     }
 }

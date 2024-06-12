@@ -20,6 +20,7 @@ final class CharacterEntity: Object {
     @Persisted var locationName: String
     @Persisted var locationUrl: String
     @Persisted var image: String
+    @Persisted var imageData: Data?
     @Persisted var episodes: List<String>
     @Persisted var url: String
     @Persisted var created: String

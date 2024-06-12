@@ -30,14 +30,19 @@ final class LocationPresenter: ILocationPresenter {
                 self?.databaseService.saveLocations(locations)
                 self?.fetchLocationsFromRealm()
             case .failure(let error):
-                print("Failed to fetch locations: \(error.localizedDescription)")
+                print(DatabaseError.fetchError(error.localizedDescription))
             }
         }
     }
     
     private func fetchLocationsFromRealm() {
-        let realm = try! Realm()
-        let locations = realm.objects(LocationEntity.self)
-        ui?.update(with: Array(locations))
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let locations = realm.objects(LocationEntity.self)
+                self.ui?.update(with: Array(locations))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
     }
 }

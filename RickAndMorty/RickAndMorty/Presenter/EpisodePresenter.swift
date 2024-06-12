@@ -30,15 +30,19 @@ final class EpisodePresenter: IEpisodePresenter {
                 self?.databaseService.saveEpisodes(episodes)
                 self?.fetchEpisodesFromRealm()
             case .failure(let error):
-                print("Failed to fetch episodes: \(error.localizedDescription)")
-                self?.fetchEpisodesFromRealm()
+                print(DatabaseError.fetchError(error.localizedDescription))
             }
         }
     }
     
     private func fetchEpisodesFromRealm() {
-        let realm = try! Realm()
-        let episodes = realm.objects(EpisodeEntity.self)
-        ui?.update(with: Array(episodes))
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let episodes = realm.objects(EpisodeEntity.self)
+                self.ui?.update(with: Array(episodes))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
     }
 }

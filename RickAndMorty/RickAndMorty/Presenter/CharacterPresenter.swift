@@ -30,14 +30,19 @@ final class CharacterPresenter: ICharacterPresenter {
                 self?.databaseService.saveCharacters(characters)
                 self?.fetchCharactersFromRealm()
             case .failure(let error):
-                print("Failed to fetch characters: \(error.localizedDescription)")
+                print(DatabaseError.fetchError(error.localizedDescription))
             }
         }
     }
     
     private func fetchCharactersFromRealm() {
-        let realm = try! Realm()
-        let characters = realm.objects(CharacterEntity.self)
-        ui?.update(with: Array(characters))
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let characters = realm.objects(CharacterEntity.self)
+                self.ui?.update(with: Array(characters))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
     }
 }

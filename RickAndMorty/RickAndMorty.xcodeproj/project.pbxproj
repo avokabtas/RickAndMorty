@@ -35,6 +35,10 @@
 		865CD8CF2C18135900D7E9C6 /* EpisodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8CE2C18135900D7E9C6 /* EpisodePresenter.swift */; };
 		865CD8D12C1843F200D7E9C6 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D02C1843F200D7E9C6 /* DependencyContainer.swift */; };
 		865CD8D62C18968900D7E9C6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D52C18968900D7E9C6 /* NetworkError.swift */; };
+		865CD8D82C19747E00D7E9C6 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D72C19747E00D7E9C6 /* CharacterView.swift */; };
+		865CD8DA2C19897100D7E9C6 /* CharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D92C19897100D7E9C6 /* CharacterViewCell.swift */; };
+		865CD8DC2C1991C800D7E9C6 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8DB2C1991C800D7E9C6 /* CharacterDetailView.swift */; };
+		865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,10 @@
 		865CD8CE2C18135900D7E9C6 /* EpisodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePresenter.swift; sourceTree = "<group>"; };
 		865CD8D02C1843F200D7E9C6 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		865CD8D52C18968900D7E9C6 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		865CD8D72C19747E00D7E9C6 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		865CD8D92C19897100D7E9C6 /* CharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewCell.swift; sourceTree = "<group>"; };
+		865CD8DB2C1991C800D7E9C6 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,7 @@
 				865CD8912C16B7FE00D7E9C6 /* TextData.swift */,
 				865CD8C52C17369E00D7E9C6 /* Endpoint.swift */,
 				865CD8D52C18968900D7E9C6 /* NetworkError.swift */,
+				865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -231,6 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				865CD8632C1578B800D7E9C6 /* CharacterViewController.swift */,
+				865CD8D72C19747E00D7E9C6 /* CharacterView.swift */,
+				865CD8D92C19897100D7E9C6 /* CharacterViewCell.swift */,
+				865CD8DB2C1991C800D7E9C6 /* CharacterDetailView.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 			files = (
 				865CD8872C16B53C00D7E9C6 /* Character.swift in Sources */,
 				865CD88E2C16B69300D7E9C6 /* LocationEntity.swift in Sources */,
+				865CD8DA2C19897100D7E9C6 /* CharacterViewCell.swift in Sources */,
 				865CD8772C157AD100D7E9C6 /* LocationViewController.swift in Sources */,
 				865CD8642C1578B800D7E9C6 /* CharacterViewController.swift in Sources */,
 				865CD8CD2C18135300D7E9C6 /* LocationPresenter.swift in Sources */,
@@ -345,7 +358,10 @@
 				865CD8CF2C18135900D7E9C6 /* EpisodePresenter.swift in Sources */,
 				865CD8852C16B53300D7E9C6 /* Location.swift in Sources */,
 				865CD8602C1578B800D7E9C6 /* AppDelegate.swift in Sources */,
+				865CD8DC2C1991C800D7E9C6 /* CharacterDetailView.swift in Sources */,
+				865CD8D82C19747E00D7E9C6 /* CharacterView.swift in Sources */,
 				865CD8B82C16E7EC00D7E9C6 /* NetworkService.swift in Sources */,
+				865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */,
 				865CD8792C157AEA00D7E9C6 /* EpisodeViewController.swift in Sources */,
 				865CD8812C15806800D7E9C6 /* TabBarController.swift in Sources */,
 				865CD8CB2C18134B00D7E9C6 /* CharacterPresenter.swift in Sources */,

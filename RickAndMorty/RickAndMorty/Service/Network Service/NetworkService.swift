@@ -50,8 +50,39 @@ final class NetworkService: INetworkService {
         }.resume()
     }
     
+    private func downloadImages(for characters: [Character], completion: @escaping (Result<[Character], Error>) -> Void) {
+        let group = DispatchGroup()
+        var updatedCharacters = characters
+        
+        for (index, character) in characters.enumerated() {
+            group.enter()
+            guard let url = URL(string: character.image) else {
+                group.leave()
+                continue
+            }
+            
+            session.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    updatedCharacters[index].imageData = data
+                }
+                group.leave()
+            }.resume()
+        }
+        
+        group.notify(queue: .main) {
+            completion(.success(updatedCharacters))
+        }
+    }
+    
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
-        fetchData(endpoint: .character, completion: completion)
+        fetchData(endpoint: .character) { [weak self] (result: Result<[Character], Error>) in
+            switch result {
+            case .success(let characters):
+                self?.downloadImages(for: characters, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     func fetchLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
