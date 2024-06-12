@@ -17,37 +17,59 @@ final class NetworkService: INetworkService {
     private let baseURL = "https://rickandmortyapi.com/api"
     private let session = URLSession.shared
     
-    private func fetchData<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<[T], Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/\(endpoint)") else {
-            completion(.failure(NetworkError.invalidURL))
-            return
+    private func fetchData<T: Decodable>(endpoint: Endpoint,
+                                         totalPages: Page,
+                                         completion: @escaping (Result<[T], Error>) -> Void) {
+        var allResults = [T]()
+        let group = DispatchGroup()
+        var errors: [Error] = []
+        
+        for page in 1...totalPages.rawValue {
+            group.enter()
+            guard let url = URL(string: "\(baseURL)/\(endpoint)?page=\(page)") else {
+                group.leave()
+                continue
+            }
+            
+            session.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    errors.append(error)
+                    group.leave()
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    errors.append(NetworkError.invalidResponse)
+                    group.leave()
+                    return
+                }
+                
+                guard let data = data else {
+                    errors.append(NetworkError.noData)
+                    group.leave()
+                    return
+                }
+                
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
+                    allResults.append(contentsOf: apiResponse.results)
+                    group.leave()
+                } catch {
+                    errors.append(NetworkError.invalidJSON)
+                    group.leave()
+                }
+            }.resume()
         }
         
-        session.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(NetworkError.custom(error.localizedDescription)))
-                return
+        group.notify(queue: .main) {
+            if let error = errors.first {
+                completion(.failure(error))
+            } else {
+                completion(.success(allResults))
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                completion(.failure(NetworkError.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
-                completion(.success(apiResponse.results))
-            } catch {
-                completion(.failure(NetworkError.invalidJSON))
-            }
-        }.resume()
+        }
     }
     
     private func downloadImages(for characters: [Character], completion: @escaping (Result<[Character], Error>) -> Void) {
@@ -75,7 +97,7 @@ final class NetworkService: INetworkService {
     }
     
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
-        fetchData(endpoint: .character) { [weak self] (result: Result<[Character], Error>) in
+        fetchData(endpoint: .character, totalPages: .allCharacters) { [weak self] (result: Result<[Character], Error>) in
             switch result {
             case .success(let characters):
                 self?.downloadImages(for: characters, completion: completion)
@@ -86,10 +108,10 @@ final class NetworkService: INetworkService {
     }
     
     func fetchLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
-        fetchData(endpoint: .location, completion: completion)
+        fetchData(endpoint: .location, totalPages: .allLocatios, completion: completion)
     }
     
     func fetchEpisodes(completion: @escaping (Result<[Episode], Error>) -> Void) {
-        fetchData(endpoint: .episode, completion: completion)
+        fetchData(endpoint: .episode, totalPages: .allEpisodes, completion: completion)
     }
 }

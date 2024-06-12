@@ -39,6 +39,7 @@
 		865CD8DA2C19897100D7E9C6 /* CharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8D92C19897100D7E9C6 /* CharacterViewCell.swift */; };
 		865CD8DC2C1991C800D7E9C6 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8DB2C1991C800D7E9C6 /* CharacterDetailView.swift */; };
 		865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */; };
+		865CD8E02C19CCA500D7E9C6 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8DF2C19CCA500D7E9C6 /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		865CD8D92C19897100D7E9C6 /* CharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewCell.swift; sourceTree = "<group>"; };
 		865CD8DB2C1991C800D7E9C6 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		865CD8DF2C19CCA500D7E9C6 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				865CD87B2C157D8800D7E9C6 /* TabBar.swift */,
 				865CD8912C16B7FE00D7E9C6 /* TextData.swift */,
 				865CD8C52C17369E00D7E9C6 /* Endpoint.swift */,
+				865CD8DF2C19CCA500D7E9C6 /* Page.swift */,
 				865CD8D52C18968900D7E9C6 /* NetworkError.swift */,
 				865CD8DD2C19B10F00D7E9C6 /* DatabaseError.swift */,
 			);
@@ -362,6 +365,7 @@
 				865CD8D82C19747E00D7E9C6 /* CharacterView.swift in Sources */,
 				865CD8B82C16E7EC00D7E9C6 /* NetworkService.swift in Sources */,
 				865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */,
+				865CD8E02C19CCA500D7E9C6 /* Page.swift in Sources */,
 				865CD8792C157AEA00D7E9C6 /* EpisodeViewController.swift in Sources */,
 				865CD8812C15806800D7E9C6 /* TabBarController.swift in Sources */,
 				865CD8CB2C18134B00D7E9C6 /* CharacterPresenter.swift in Sources */,
