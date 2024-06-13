@@ -10,6 +10,8 @@ import RealmSwift
 
 protocol ICharacterPresenter: AnyObject {
     func loadCharacters()
+    func searchCharacters(with name: String)
+    func fetchCharactersFromDB()
 }
 
 final class CharacterPresenter: ICharacterPresenter {
@@ -28,14 +30,27 @@ final class CharacterPresenter: ICharacterPresenter {
             switch result {
             case .success(let characters):
                 self?.databaseService.saveCharacters(characters)
-                self?.fetchCharactersFromRealm()
+                self?.fetchCharactersFromDB()
             case .failure(let error):
                 print(DatabaseError.fetchError(error.localizedDescription))
+                self?.fetchCharactersFromDB()
             }
         }
     }
     
-    private func fetchCharactersFromRealm() {
+    func searchCharacters(with name: String) {
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let characters = realm.objects(CharacterEntity.self)
+                    .filter("name CONTAINS[c] %@", name)
+                self.ui?.update(with: Array(characters))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
+    }
+    
+    func fetchCharactersFromDB() {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let characters = realm.objects(CharacterEntity.self)

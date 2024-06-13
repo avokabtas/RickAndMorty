@@ -18,9 +18,6 @@ final class CharacterViewController: UIViewController {
     private let searchController = UISearchController()
     private var characters: [CharacterEntity] = []
     
-    // TODO: ui и detail экран
-    // поиск
-    
     init(presenter: ICharacterPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -37,7 +34,8 @@ final class CharacterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = TextData.characterTitleVC.rawValue
+        setupNavBar()
+        setupSearch()
         setupView()
         characterView.startIndicator()
         presenter.loadCharacters()
@@ -50,12 +48,19 @@ final class CharacterViewController: UIViewController {
         }
     }
     
+    private func setupNavBar() {
+        title = TextData.characterTitleVC.rawValue
+        navigationItem.searchController = searchController
+    }
+    
     private func setupView() {
         characterView.tableView.delegate = self
         characterView.tableView.dataSource = self
         characterView.tableView.register(CharacterViewCell.self, forCellReuseIdentifier: CharacterViewCell.identifier)
     }
 }
+
+// MARK: - UI Update
 
 extension CharacterViewController: ICharacterUI {
     func update(with characters: [CharacterEntity]) {
@@ -66,6 +71,8 @@ extension CharacterViewController: ICharacterUI {
         }
     }
 }
+
+// MARK: - Table Delegate
 
 extension CharacterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -78,6 +85,8 @@ extension CharacterViewController: UITableViewDelegate {
     //    }
 }
 
+// MARK: - Table Data Source
+
 extension CharacterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
@@ -89,9 +98,9 @@ extension CharacterViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let character = characters[indexPath.row]
-        
         cell.accessoryType = .disclosureIndicator
+        
+        let character = characters[indexPath.row]
         
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
             cell.configure(with: image, with: character.name)
@@ -100,5 +109,27 @@ extension CharacterViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+}
+
+// MARK: - Search Delegate
+
+extension CharacterViewController: UISearchBarDelegate {
+    private func setupSearch() {
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search the Сharacter"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            presenter.fetchCharactersFromDB()
+        } else {
+            presenter.searchCharacters(with: searchText)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.fetchCharactersFromDB()
     }
 }

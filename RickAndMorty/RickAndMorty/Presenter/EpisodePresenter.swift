@@ -28,14 +28,15 @@ final class EpisodePresenter: IEpisodePresenter {
             switch result {
             case .success(let episodes):
                 self?.databaseService.saveEpisodes(episodes)
-                self?.fetchEpisodesFromRealm()
+                self?.fetchEpisodesFromDB()
             case .failure(let error):
                 print(DatabaseError.fetchError(error.localizedDescription))
+                self?.fetchEpisodesFromDB()
             }
         }
     }
     
-    private func fetchEpisodesFromRealm() {
+    private func fetchEpisodesFromDB() {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let episodes = realm.objects(EpisodeEntity.self)

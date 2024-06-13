@@ -28,14 +28,15 @@ final class LocationPresenter: ILocationPresenter {
             switch result {
             case .success(let locations):
                 self?.databaseService.saveLocations(locations)
-                self?.fetchLocationsFromRealm()
+                self?.fetchLocationsFromDB()
             case .failure(let error):
                 print(DatabaseError.fetchError(error.localizedDescription))
+                self?.fetchLocationsFromDB()
             }
         }
     }
     
-    private func fetchLocationsFromRealm() {
+    private func fetchLocationsFromDB() {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let locations = realm.objects(LocationEntity.self)

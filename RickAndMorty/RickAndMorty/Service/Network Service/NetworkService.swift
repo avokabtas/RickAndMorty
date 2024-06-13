@@ -17,61 +17,58 @@ final class NetworkService: INetworkService {
     private let baseURL = "https://rickandmortyapi.com/api"
     private let session = URLSession.shared
     
+    /// Последовательная загрузка данных по страницам API.
+    /// - Parameters:
+    ///   - endpoint: Точка API, с которой мы хотим загрузить данные (character, location, episode).
+    ///   - totalPages: Общее количество страниц, которые нужно загрузить.
+    ///   - page: Текущая страница, которую мы загружаем. По умолчанию, это 1.
+    ///   - allResults: Массив, в который собираем результаты загрузки данных с каждой страницы. По умолчанию, пустой.
+    ///   - completion: Замыкание, которое передает либо успешный результат с массивом данных, либо ошибку.
     private func fetchData<T: Decodable>(endpoint: Endpoint,
                                          totalPages: Page,
+                                         page: Int = 1, 
+                                         allResults: [T] = [],
                                          completion: @escaping (Result<[T], Error>) -> Void) {
-        var allResults = [T]()
-        let group = DispatchGroup()
-        var errors: [Error] = []
         
-        for page in 1...totalPages.rawValue {
-            group.enter()
-            guard let url = URL(string: "\(baseURL)/\(endpoint)?page=\(page)") else {
-                group.leave()
-                continue
+        guard page <= totalPages.rawValue else {
+            completion(.success(allResults))
+            return
+        }
+        
+        guard let url = URL(string: "\(baseURL)/\(endpoint)?page=\(page)") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
+        session.dataTask(with: url) { [weak self] data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
             
-            session.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    errors.append(error)
-                    group.leave()
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                    errors.append(NetworkError.invalidResponse)
-                    group.leave()
-                    return
-                }
-                
-                guard let data = data else {
-                    errors.append(NetworkError.noData)
-                    group.leave()
-                    return
-                }
-                
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
-                    allResults.append(contentsOf: apiResponse.results)
-                    group.leave()
-                } catch {
-                    errors.append(NetworkError.invalidJSON)
-                    group.leave()
-                }
-            }.resume()
-        }
-        
-        group.notify(queue: .main) {
-            if let error = errors.first {
-                completion(.failure(error))
-            } else {
-                completion(.success(allResults))
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
             }
-        }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let apiResponse = try jsonDecoder.decode(APIResponse<T>.self, from: data)
+                let newResults = allResults + apiResponse.results
+                self?.fetchData(endpoint: endpoint, totalPages: totalPages, page: page + 1, allResults: newResults, completion: completion)
+            } catch {
+                completion(.failure(NetworkError.invalidJSON))
+            }
+        }.resume()
     }
     
+    /// Загрузка картинкой персонажей
     private func downloadImages(for characters: [Character],
                                 completion: @escaping (Result<[Character], Error>) -> Void) {
         let group = DispatchGroup()
@@ -101,14 +98,7 @@ final class NetworkService: INetworkService {
         fetchData(endpoint: .character, totalPages: .allCharacters) { [weak self] (result: Result<[Character], Error>) in
             switch result {
             case .success(let characters):
-                self?.downloadImages(for: characters) { result in
-                    switch result {
-                    case .success(let charactersWithImages):
-                        completion(.success(charactersWithImages))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
+                self?.downloadImages(for: characters, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
