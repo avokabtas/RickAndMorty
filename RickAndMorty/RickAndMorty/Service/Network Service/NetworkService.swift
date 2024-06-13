@@ -72,7 +72,8 @@ final class NetworkService: INetworkService {
         }
     }
     
-    private func downloadImages(for characters: [Character], completion: @escaping (Result<[Character], Error>) -> Void) {
+    private func downloadImages(for characters: [Character],
+                                completion: @escaping (Result<[Character], Error>) -> Void) {
         let group = DispatchGroup()
         var updatedCharacters = characters
         
@@ -100,7 +101,14 @@ final class NetworkService: INetworkService {
         fetchData(endpoint: .character, totalPages: .allCharacters) { [weak self] (result: Result<[Character], Error>) in
             switch result {
             case .success(let characters):
-                self?.downloadImages(for: characters, completion: completion)
+                self?.downloadImages(for: characters) { result in
+                    switch result {
+                    case .success(let charactersWithImages):
+                        completion(.success(charactersWithImages))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
