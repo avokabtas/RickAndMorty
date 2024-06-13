@@ -15,6 +15,12 @@ final class CharacterView: UIView {
         return tableView
     }()
     
+    let indicatorView: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -29,6 +35,7 @@ final class CharacterView: UIView {
     private func setupView() {
         backgroundColor = .white
         addSubview(tableView)
+        addSubview(indicatorView)
     }
     
     private func setupConstraints() {
@@ -37,6 +44,20 @@ final class CharacterView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            indicatorView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    func startIndicator() {
+        tableView.isHidden = true
+        indicatorView.startAnimating()
+    }
+    
+    func stopIndicator() {
+        tableView.isHidden = false
+        indicatorView.isHidden = true
+        indicatorView.stopAnimating()
     }
 }

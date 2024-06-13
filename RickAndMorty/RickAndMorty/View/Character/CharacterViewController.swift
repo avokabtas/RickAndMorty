@@ -19,8 +19,6 @@ final class CharacterViewController: UIViewController {
     private var characters: [CharacterEntity] = []
     
     // TODO: ui и detail экран
-    // высота ячеек
-    // стрелку слева
     // поиск
     
     init(presenter: ICharacterPresenter) {
@@ -41,7 +39,15 @@ final class CharacterViewController: UIViewController {
         super.viewDidLoad()
         title = TextData.characterTitleVC.rawValue
         setupView()
+        characterView.startIndicator()
         presenter.loadCharacters()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = characterView.tableView.indexPathForSelectedRow {
+            characterView.tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     private func setupView() {
@@ -55,12 +61,16 @@ extension CharacterViewController: ICharacterUI {
     func update(with characters: [CharacterEntity]) {
         self.characters = characters
         DispatchQueue.main.async {
+            self.characterView.stopIndicator()
             self.characterView.tableView.reloadData()
         }
     }
 }
 
 extension CharacterViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 120
+        }
     //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     //        let character = characters[indexPath.row]
     //        let detailVC = CharacterDetailView(character: character)
@@ -80,6 +90,8 @@ extension CharacterViewController: UITableViewDataSource {
         }
         
         let character = characters[indexPath.row]
+        
+        cell.accessoryType = .disclosureIndicator
         
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
             cell.configure(with: image, with: character.name)
