@@ -14,6 +14,9 @@ protocol ILocationUI: AnyObject {
 final class LocationViewController: UIViewController {
     
     var presenter: ILocationPresenter
+    private var locationView = LocationView()
+    private let searchController = UISearchController()
+    private var locations: [LocationEntity] = []
     
     init(presenter: ILocationPresenter) {
         self.presenter = presenter
@@ -25,21 +28,105 @@ final class LocationViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = locationView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
-        title = TextData.locationTitleVC.rawValue
+        setupNavBar()
+        setupSearch()
+        setupView()
+        locationView.startIndicator()
         presenter.loadLocations()
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = locationView.tableView.indexPathForSelectedRow {
+            locationView.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    private func setupNavBar() {
+        title = TextData.locationTitleVC.rawValue
+        navigationItem.searchController = searchController
+    }
+    
+    private func setupView() {
+        locationView.tableView.delegate = self
+        locationView.tableView.dataSource = self
+        locationView.tableView.register(LocationViewCell.self, forCellReuseIdentifier: LocationViewCell.identifier)
+    }
 
 }
 
+// MARK: - UI Update
+
 extension LocationViewController: ILocationUI {
     func update(with locations: [LocationEntity]) {
-        locations.forEach { location in
-            print(location.name)
+        self.locations = locations
+        DispatchQueue.main.async {
+            self.locationView.stopIndicator()
+            self.locationView.tableView.reloadData()
+            print("Updated locations: \(locations.map { $0.name })")
         }
+    }
+}
+
+// MARK: - Table Delegate
+
+extension LocationViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//            return 50
+//        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        //
+    }
+}
+
+// MARK: - Table Data Source
+
+extension LocationViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationViewCell.identifier, for: indexPath) as? LocationViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.accessoryType = .disclosureIndicator
+        
+        let location = locations[indexPath.row]
+        cell.configure(with: location.name)
+        
+        return cell
+    }
+}
+
+// MARK: - Search Delegate
+
+extension LocationViewController: UISearchBarDelegate {
+    private func setupSearch() {
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search the Locations"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            presenter.fetchLocationsFromDB()
+        } else {
+            presenter.searchLocations(with: searchText)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.fetchLocationsFromDB()
     }
 }

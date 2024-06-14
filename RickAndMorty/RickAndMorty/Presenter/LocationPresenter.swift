@@ -10,6 +10,8 @@ import RealmSwift
 
 protocol ILocationPresenter {
     func loadLocations()
+    func searchLocations(with name: String)
+    func fetchLocationsFromDB()
 }
 
 final class LocationPresenter: ILocationPresenter {
@@ -36,7 +38,19 @@ final class LocationPresenter: ILocationPresenter {
         }
     }
     
-    private func fetchLocationsFromDB() {
+    func searchLocations(with name: String) {
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let locations = realm.objects(LocationEntity.self)
+                    .filter("name CONTAINS[c] %@", name)
+                self.ui?.update(with: Array(locations))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
+    }
+    
+    func fetchLocationsFromDB() {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let locations = realm.objects(LocationEntity.self)
