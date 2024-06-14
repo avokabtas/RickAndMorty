@@ -16,7 +16,6 @@ final class CharacterViewController: UIViewController {
     private var presenter: ICharacterPresenter
     private var characterView = CharacterView()
     private let searchController = UISearchController()
-    //private var characters: [CharacterEntity] = []
     
     init(presenter: ICharacterPresenter) {
         self.presenter = presenter
@@ -75,20 +74,20 @@ extension CharacterViewController: ICharacterUI {
 
 extension CharacterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 120
-        }
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let character = characters[indexPath.row]
-    //        let detailVC = CharacterDetailView(character: character)
-    //        navigationController?.pushViewController(detailVC, animated: true)
-    //    }
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = presenter.characters[indexPath.row]
+        let detailVC = Assembly.createCharacterDetailModule(with: character)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 // MARK: - Table Data Source
 
 extension CharacterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return characters.count
         return presenter.characters.count
     }
     

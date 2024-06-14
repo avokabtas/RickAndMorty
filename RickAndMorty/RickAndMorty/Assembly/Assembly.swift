@@ -37,9 +37,10 @@ enum Assembly {
         return viewController
     }
     
-//    static func createCharacterDetailModule(with charcter: CharacterEntity) -> UIViewController {
-//        let presenter = CharacterDetailPresenter(car: car)
-//        let view = CharacterDetailViewController(presenter: presenter)
-//        return view
-//    }
+    static func createCharacterDetailModule(with character: CharacterEntity) -> UIViewController {
+        let presenter = CharacterDetailPresenter(character: character)
+        let viewController = CharacterDetailViewController(presenter: presenter)
+        presenter.ui = viewController
+        return viewController
+    }
 }

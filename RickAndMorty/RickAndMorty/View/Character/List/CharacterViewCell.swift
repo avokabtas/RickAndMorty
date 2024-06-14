@@ -24,6 +24,8 @@ final class CharacterViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.numberOfLines = 2
+        nameLabel.textAlignment = .left
         return nameLabel
     }()
     

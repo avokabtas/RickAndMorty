@@ -40,10 +40,10 @@ final class CharacterView: UIView {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
             indicatorView.centerYAnchor.constraint(equalTo: centerYAnchor)
