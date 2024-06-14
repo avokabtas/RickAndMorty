@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 protocol ICharacterPresenter: AnyObject {
+    var characters: [CharacterEntity] { get }
     func loadCharacters()
     func searchCharacters(with name: String)
     func fetchCharactersFromDB()
@@ -18,6 +19,7 @@ final class CharacterPresenter: ICharacterPresenter {
     weak var ui: ICharacterUI?
     private let networkService: INetworkService
     private let databaseService: IDatabaseService
+    private(set) var characters: [CharacterEntity] = []
     
     init(ui: ICharacterUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
@@ -43,7 +45,8 @@ final class CharacterPresenter: ICharacterPresenter {
             if let realm = try? Realm() {
                 let characters = realm.objects(CharacterEntity.self)
                     .filter("name CONTAINS[c] %@", name)
-                self.ui?.update(with: Array(characters))
+                self.characters = Array(characters)
+                self.ui?.update()
             } else {
                 print(DatabaseError.notInitialized)
             }
@@ -54,7 +57,8 @@ final class CharacterPresenter: ICharacterPresenter {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let characters = realm.objects(CharacterEntity.self)
-                self.ui?.update(with: Array(characters))
+                self.characters = Array(characters)
+                self.ui?.update()
             } else {
                 print(DatabaseError.notInitialized)
             }

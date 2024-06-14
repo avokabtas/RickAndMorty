@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IEpisodeUI: AnyObject {
-    func update(with episodes: [EpisodeEntity])
+    func update()
 }
 
 final class EpisodeViewController: UIViewController {
@@ -16,7 +16,6 @@ final class EpisodeViewController: UIViewController {
     var presenter: IEpisodePresenter
     private var episodeView = EpisodeView()
     private let searchController = UISearchController()
-    private var episodes: [EpisodeEntity] = []
     
     init(presenter: IEpisodePresenter) {
         self.presenter = presenter
@@ -63,8 +62,7 @@ final class EpisodeViewController: UIViewController {
 // MARK: - UI Update
 
 extension EpisodeViewController: IEpisodeUI {
-    func update(with episodes: [EpisodeEntity]) {
-        self.episodes = episodes
+    func update() {
         DispatchQueue.main.async {
             self.episodeView.stopIndicator()
             self.episodeView.tableView.reloadData()
@@ -85,7 +83,7 @@ extension EpisodeViewController: UITableViewDelegate {
 
 extension EpisodeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return presenter.episodes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,7 +93,7 @@ extension EpisodeViewController: UITableViewDataSource {
         
         cell.accessoryType = .disclosureIndicator
         
-        let episode = episodes[indexPath.row]
+        let episode = presenter.episodes[indexPath.row]
         cell.configure(with: episode.name)
         
         return cell

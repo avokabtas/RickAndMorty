@@ -41,7 +41,6 @@ final class CharacterViewCell: UITableViewCell {
     func configure(with image: UIImage?, with name: String) {
         characterImageView.image = image
         nameLabel.text = name
-        //print("Configured cell with name: \(name) and image: \(image != nil ? "yes" : "no")")
     }
     
     private func setupView() {

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ICharacterUI: AnyObject {
-    func update(with characters: [CharacterEntity])
+    func update()
 }
 
 final class CharacterViewController: UIViewController {
@@ -16,7 +16,7 @@ final class CharacterViewController: UIViewController {
     private var presenter: ICharacterPresenter
     private var characterView = CharacterView()
     private let searchController = UISearchController()
-    private var characters: [CharacterEntity] = []
+    //private var characters: [CharacterEntity] = []
     
     init(presenter: ICharacterPresenter) {
         self.presenter = presenter
@@ -63,8 +63,7 @@ final class CharacterViewController: UIViewController {
 // MARK: - UI Update
 
 extension CharacterViewController: ICharacterUI {
-    func update(with characters: [CharacterEntity]) {
-        self.characters = characters
+    func update() {
         DispatchQueue.main.async {
             self.characterView.stopIndicator()
             self.characterView.tableView.reloadData()
@@ -89,7 +88,8 @@ extension CharacterViewController: UITableViewDelegate {
 
 extension CharacterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        //return characters.count
+        return presenter.characters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +100,7 @@ extension CharacterViewController: UITableViewDataSource {
         
         cell.accessoryType = .disclosureIndicator
         
-        let character = characters[indexPath.row]
+        let character = presenter.characters[indexPath.row]
         
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
             cell.configure(with: image, with: character.name)

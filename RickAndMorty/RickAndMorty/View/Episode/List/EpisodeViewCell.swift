@@ -29,7 +29,6 @@ final class EpisodeViewCell: UITableViewCell {
     
     func configure(with name: String) {
         nameLabel.text = name
-        print("Configured cell with name: \(name) ")
     }
     
     private func setupView() {

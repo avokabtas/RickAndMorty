@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ILocationUI: AnyObject {
-    func update(with locations: [LocationEntity])
+    func update()
 }
 
 final class LocationViewController: UIViewController {
@@ -16,7 +16,6 @@ final class LocationViewController: UIViewController {
     var presenter: ILocationPresenter
     private var locationView = LocationView()
     private let searchController = UISearchController()
-    private var locations: [LocationEntity] = []
     
     init(presenter: ILocationPresenter) {
         self.presenter = presenter
@@ -63,8 +62,7 @@ final class LocationViewController: UIViewController {
 // MARK: - UI Update
 
 extension LocationViewController: ILocationUI {
-    func update(with locations: [LocationEntity]) {
-        self.locations = locations
+    func update() {
         DispatchQueue.main.async {
             self.locationView.stopIndicator()
             self.locationView.tableView.reloadData()
@@ -89,7 +87,7 @@ extension LocationViewController: UITableViewDelegate {
 
 extension LocationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return presenter.locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,7 +97,7 @@ extension LocationViewController: UITableViewDataSource {
         
         cell.accessoryType = .disclosureIndicator
         
-        let location = locations[indexPath.row]
+        let location = presenter.locations[indexPath.row]
         cell.configure(with: location.name)
         
         return cell

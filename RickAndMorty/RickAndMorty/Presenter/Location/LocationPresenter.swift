@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 protocol ILocationPresenter {
+    var locations: [LocationEntity] { get }
     func loadLocations()
     func searchLocations(with name: String)
     func fetchLocationsFromDB()
@@ -18,6 +19,7 @@ final class LocationPresenter: ILocationPresenter {
     weak var ui: ILocationUI?
     private let networkService: INetworkService
     private let databaseService: IDatabaseService
+    private(set) var locations: [LocationEntity] = []
     
     init(ui: ILocationUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
@@ -43,7 +45,8 @@ final class LocationPresenter: ILocationPresenter {
             if let realm = try? Realm() {
                 let locations = realm.objects(LocationEntity.self)
                     .filter("name CONTAINS[c] %@", name)
-                self.ui?.update(with: Array(locations))
+                self.locations = Array(locations)
+                self.ui?.update()
             } else {
                 print(DatabaseError.notInitialized)
             }
@@ -54,7 +57,8 @@ final class LocationPresenter: ILocationPresenter {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let locations = realm.objects(LocationEntity.self)
-                self.ui?.update(with: Array(locations))
+                self.locations = Array(locations)
+                self.ui?.update()
             } else {
                 print(DatabaseError.notInitialized)
             }
