@@ -17,6 +17,8 @@ final class CharacterImageViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
+        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return imageView
     }()
     
@@ -47,8 +49,6 @@ final class CharacterImageViewCell: UITableViewCell {
             characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             characterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             characterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            characterImageView.heightAnchor.constraint(equalToConstant: 200),
-            characterImageView.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
 }

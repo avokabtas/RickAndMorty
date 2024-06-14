@@ -8,9 +8,8 @@
 import UIKit
 
 final class LocationView: UIView {
-
+    
     let tableView: UITableView = {
-       // let tableView = UITableView()
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView

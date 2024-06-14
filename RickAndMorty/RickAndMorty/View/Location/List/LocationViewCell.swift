@@ -8,6 +8,7 @@
 import UIKit
 
 final class LocationViewCell: UITableViewCell {
+    
     static let identifier = String(describing: LocationViewCell.self)
     
     private let nameLabel: UILabel = {

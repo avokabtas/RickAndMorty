@@ -25,7 +25,7 @@ final class CharacterDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = characterDetailView
     }
@@ -41,6 +41,8 @@ final class CharacterDetailViewController: UIViewController {
     }
     
     private func setupView() {
+        // Настройка для поддержки динамической высоты ячеек
+        characterDetailView.tableView.rowHeight = UITableView.automaticDimension
         characterDetailView.tableView.dataSource = self
         characterDetailView.tableView.delegate = self
         characterDetailView.tableView.register(CharacterInfoViewCell.self, forCellReuseIdentifier: CharacterInfoViewCell.identifier)
@@ -67,9 +69,9 @@ extension CharacterDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1 // Только одна ячейка для изображения
+            return 1
         }
-        return presenter.characterInfo.count // Количество ячеек для информации
+        return presenter.characterInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,7 +88,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             let info = presenter.characterInfo[indexPath.row]
-            cell.configure(title: info.title, value: info.value)
+            cell.configure(with: info.title, with: info.value)
             return cell
         }
     }
@@ -104,5 +106,9 @@ extension CharacterDetailViewController: UITableViewDataSource {
 extension CharacterDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

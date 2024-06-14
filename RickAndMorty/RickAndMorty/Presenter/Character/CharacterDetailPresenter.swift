@@ -34,12 +34,12 @@ final class CharacterDetailPresenter: ICharacterDetailPresenter {
     
     var characterInfo: [(title: String, value: String)] {
         return [
-            ("Status", character.status),
-            ("Species", character.species),
-            ("Type", character.type),
-            ("Gender", character.gender),
-            ("Origin", character.originName),
-            ("Location", character.locationName),
+            ("Status:", character.status),
+            ("Species:", character.species),
+            ("Type:", character.type.isEmpty ? "unknown" : character.type),
+            ("Gender:", character.gender),
+            ("Origin:", character.originName),
+            ("Location:", character.locationName),
         ]
     }
 }

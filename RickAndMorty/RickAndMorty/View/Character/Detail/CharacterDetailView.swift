@@ -8,7 +8,7 @@
 import UIKit
 
 final class CharacterDetailView: UIView {
-        
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false

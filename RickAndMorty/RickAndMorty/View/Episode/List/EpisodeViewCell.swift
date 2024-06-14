@@ -8,6 +8,7 @@
 import UIKit
 
 final class EpisodeViewCell: UITableViewCell {
+    
     static let identifier = String(describing: EpisodeViewCell.self)
     
     private let nameLabel: UILabel = {
