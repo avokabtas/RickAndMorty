@@ -37,28 +37,18 @@ final class CharacterDetailViewController: UIViewController {
     }
     
     private func setupTitle() {
-        //title = presenter.characterName
-        
-        let titleLabel = UILabel()
-        titleLabel.text = presenter.characterName
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        navigationItem.titleView = titleLabel
+        title = presenter.characterName
     }
     
     private func setupView() {
-        
         characterDetailView.tableView.dataSource = self
-        characterDetailView.tableView.register(CharacterDetailViewCell.self, forCellReuseIdentifier: CharacterDetailViewCell.identifier)
-        
-//        if let imageData = presenter.character.imageData {
-//            characterDetailView.characterImageView.image = UIImage(data: imageData)
-//        }
-        if let characterImage = presenter.characterImage {
-            characterDetailView.characterImageView.image = characterImage
-        }
+        characterDetailView.tableView.delegate = self
+        characterDetailView.tableView.register(CharacterInfoViewCell.self, forCellReuseIdentifier: CharacterInfoViewCell.identifier)
+        characterDetailView.tableView.register(CharacterImageViewCell.self, forCellReuseIdentifier: CharacterImageViewCell.identifier)
     }
 }
+
+// MARK: - UI Update
 
 extension CharacterDetailViewController: ICharacterDetailUI {
     func update() {
@@ -68,19 +58,51 @@ extension CharacterDetailViewController: ICharacterDetailUI {
     }
 }
 
+// MARK: - Table Data Source
+
 extension CharacterDetailViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.characterInfo.count
+        if section == 0 {
+            return 1 // Только одна ячейка для изображения
+        }
+        return presenter.characterInfo.count // Количество ячеек для информации
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailViewCell.identifier, for: indexPath) as! CharacterDetailViewCell
-        let info = presenter.characterInfo[indexPath.row]
-        cell.configure(title: info.title, value: info.value)
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterImageViewCell.identifier, for: indexPath) as? CharacterImageViewCell else {
+                return UITableViewCell()
+            }
+            if let characterImage = presenter.characterImage {
+                cell.configure(with: characterImage)
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterInfoViewCell.identifier, for: indexPath) as? CharacterInfoViewCell else {
+                return UITableViewCell()
+            }
+            let info = presenter.characterInfo[indexPath.row]
+            cell.configure(title: info.title, value: info.value)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Info"
+        if section == 1 {
+            return "Info"
+        }
+        return nil
+    }
+}
+
+// MARK: - Table Delegate
+
+extension CharacterDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CharacterDetailViewCell.swift
+//  CharacterInfoViewCell.swift
 //  RickAndMorty
 //
 //  Created by Aliia Satbakova  on 14.06.2024.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CharacterDetailViewCell: UITableViewCell {
+class CharacterInfoViewCell: UITableViewCell {
     
-    static let identifier = String(describing: CharacterDetailViewCell.self)
+    static let identifier = String(describing: CharacterInfoViewCell.self)
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -29,6 +29,7 @@ class CharacterDetailViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         setupConstraints()
+        selectionStyle = .none
     }
     
     @available(*, unavailable)

@@ -74,7 +74,7 @@ extension EpisodeViewController: IEpisodeUI {
 
 extension EpisodeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return 64
     }
     
 }

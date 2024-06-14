@@ -10,7 +10,8 @@ import UIKit
 class EpisodeView: UIView {
 
     let tableView: UITableView = {
-        let tableView = UITableView()
+        //let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

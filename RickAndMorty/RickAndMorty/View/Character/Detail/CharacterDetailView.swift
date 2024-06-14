@@ -14,18 +14,7 @@ final class CharacterDetailView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    let characterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
-        imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        return imageView
-    }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -38,17 +27,12 @@ final class CharacterDetailView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .white
-        addSubview(characterImageView)
         addSubview(tableView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 16),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
