@@ -7,7 +7,7 @@
 
 import UIKit
 
-//class CharacterDetailView: UIView {
+//final class CharacterDetailView: UIView {
 //    private let character: CharacterEntity
 //    
 //    init(character: CharacterEntity) {

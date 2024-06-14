@@ -10,6 +10,8 @@ import RealmSwift
 
 protocol IEpisodePresenter {
     func loadEpisodes()
+    func searchEpisodes(with name: String)
+    func fetchEpisodesFromDB()
 }
 
 final class EpisodePresenter: IEpisodePresenter {
@@ -36,7 +38,19 @@ final class EpisodePresenter: IEpisodePresenter {
         }
     }
     
-    private func fetchEpisodesFromDB() {
+    func searchEpisodes(with name: String) {
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let episodes = realm.objects(EpisodeEntity.self)
+                    .filter("name CONTAINS[c] %@", name)
+                self.ui?.update(with: Array(episodes))
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
+    }
+    
+    func fetchEpisodesFromDB() {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let episodes = realm.objects(EpisodeEntity.self)

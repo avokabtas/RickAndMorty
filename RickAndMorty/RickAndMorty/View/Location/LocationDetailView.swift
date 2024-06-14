@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationDetailView: UIView {
+final class LocationDetailView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationViewCell: UITableViewCell {
+final class LocationViewCell: UITableViewCell {
     static let identifier = String(describing: LocationViewCell.self)
     
     private let nameLabel: UILabel = {
@@ -29,7 +29,6 @@ class LocationViewCell: UITableViewCell {
     
     func configure(with name: String) {
         nameLabel.text = name
-        print("Configured cell with name: \(name) ")
     }
     
     private func setupView() {

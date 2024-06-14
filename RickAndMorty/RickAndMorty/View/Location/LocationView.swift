@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationView: UIView {
+final class LocationView: UIView {
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -60,5 +60,4 @@ class LocationView: UIView {
         indicatorView.isHidden = true
         indicatorView.stopAnimating()
     }
-
 }

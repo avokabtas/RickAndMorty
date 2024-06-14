@@ -39,7 +39,6 @@ final class LocationViewController: UIViewController {
         setupView()
         locationView.startIndicator()
         presenter.loadLocations()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +58,6 @@ final class LocationViewController: UIViewController {
         locationView.tableView.dataSource = self
         locationView.tableView.register(LocationViewCell.self, forCellReuseIdentifier: LocationViewCell.identifier)
     }
-
 }
 
 // MARK: - UI Update
@@ -70,7 +68,6 @@ extension LocationViewController: ILocationUI {
         DispatchQueue.main.async {
             self.locationView.stopIndicator()
             self.locationView.tableView.reloadData()
-            print("Updated locations: \(locations.map { $0.name })")
         }
     }
 }
@@ -78,9 +75,9 @@ extension LocationViewController: ILocationUI {
 // MARK: - Table Delegate
 
 extension LocationViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//            return 50
-//        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -114,7 +111,7 @@ extension LocationViewController: UITableViewDataSource {
 extension LocationViewController: UISearchBarDelegate {
     private func setupSearch() {
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search the Locations"
+        searchController.searchBar.placeholder = "Search the Location"
         searchController.obscuresBackgroundDuringPresentation = false
     }
     

@@ -12,7 +12,11 @@ protocol IEpisodeUI: AnyObject {
 }
 
 final class EpisodeViewController: UIViewController {
+    
     var presenter: IEpisodePresenter
+    private var episodeView = EpisodeView()
+    private let searchController = UISearchController()
+    private var episodes: [EpisodeEntity] = []
     
     init(presenter: IEpisodePresenter) {
         self.presenter = presenter
@@ -24,18 +28,98 @@ final class EpisodeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = episodeView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
-        title = TextData.episodeTitleVC.rawValue
+        setupNavBar()
+        setupSearch()
+        setupView()
+        episodeView.startIndicator()
         presenter.loadEpisodes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = episodeView.tableView.indexPathForSelectedRow {
+            episodeView.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    private func setupNavBar() {
+        title = TextData.episodeTitleVC.rawValue
+        navigationItem.searchController = searchController
+    }
+    
+    private func setupView() {
+        episodeView.tableView.delegate = self
+        episodeView.tableView.dataSource = self
+        episodeView.tableView.register(EpisodeViewCell.self, forCellReuseIdentifier: EpisodeViewCell.identifier)
     }
 }
 
+// MARK: - UI Update
+
 extension EpisodeViewController: IEpisodeUI {
     func update(with episodes: [EpisodeEntity]) {
-        episodes.forEach { episode in
-            print(episode.airDate)
+        self.episodes = episodes
+        DispatchQueue.main.async {
+            self.episodeView.stopIndicator()
+            self.episodeView.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - Table Delegate
+
+extension EpisodeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    
+}
+
+// MARK: - Table Data Source
+
+extension EpisodeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return episodes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeViewCell.identifier, for: indexPath) as? EpisodeViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.accessoryType = .disclosureIndicator
+        
+        let episode = episodes[indexPath.row]
+        cell.configure(with: episode.name)
+        
+        return cell
+    }
+}
+
+// MARK: - Search Delegate
+
+extension EpisodeViewController: UISearchBarDelegate {
+    private func setupSearch() {
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search the Episode"
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            presenter.fetchEpisodesFromDB()
+        } else {
+            presenter.searchEpisodes(with: searchText)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.fetchEpisodesFromDB()
     }
 }
