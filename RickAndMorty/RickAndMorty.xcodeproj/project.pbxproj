@@ -192,7 +192,7 @@
 		865CD87F2C15802600D7E9C6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				865CD8802C15806800D7E9C6 /* TabBarController.swift */,
+				865CD90D2C1D9E4F00D7E9C6 /* TabBar */,
 				865CD8D22C18475100D7E9C6 /* Character */,
 				865CD8D32C18475A00D7E9C6 /* Location */,
 				865CD8D42C18476000D7E9C6 /* Episode */,
@@ -395,6 +395,14 @@
 				865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		865CD90D2C1D9E4F00D7E9C6 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				865CD8802C15806800D7E9C6 /* TabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

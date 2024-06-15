@@ -21,10 +21,18 @@ final class CharacterView: UIView {
         return activityIndicator
     }()
     
+    let statusSegmentControl: UISegmentedControl = {
+        let segmentControl = UISegmentedControl(items: ["All", "Alive", "Dead", "Unknown"])
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentControl.selectedSegmentIndex = 0
+        return segmentControl
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupConstraints()
+        setupSegmentControl()
     }
     
     @available(*, unavailable)
@@ -48,6 +56,20 @@ final class CharacterView: UIView {
             indicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
             indicatorView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    private func setupSegmentControl() {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 50))
+        headerView.addSubview(statusSegmentControl)
+        
+        NSLayoutConstraint.activate([
+            statusSegmentControl.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            statusSegmentControl.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            statusSegmentControl.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            statusSegmentControl.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+        ])
+        
+        tableView.tableHeaderView = headerView
     }
     
     func startIndicator() {

@@ -37,6 +37,7 @@ final class CharacterViewController: UIViewController {
         setupNavBar()
         setupSearch()
         setupView()
+        changeSegmentControl()
         characterView.startIndicator()
         presenter.loadCharacters()
     }
@@ -57,6 +58,23 @@ final class CharacterViewController: UIViewController {
         characterView.tableView.delegate = self
         characterView.tableView.dataSource = self
         characterView.tableView.register(CharacterViewCell.self, forCellReuseIdentifier: CharacterViewCell.identifier)
+    }
+    
+    private func changeSegmentControl() {
+        characterView.statusSegmentControl.addTarget(self, action: #selector(segmentControlValueChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc private func segmentControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            presenter.filterCharacters(by: .alive)
+        case 2:
+            presenter.filterCharacters(by: .dead)
+        case 3:
+            presenter.filterCharacters(by: .unknown)
+        default:
+            presenter.fetchCharactersFromDB()
+        }
     }
 }
 

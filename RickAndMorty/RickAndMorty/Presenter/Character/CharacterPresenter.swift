@@ -14,6 +14,7 @@ protocol ICharacterPresenter: AnyObject {
     func loadCharacters()
     func searchCharacters(with name: String)
     func fetchCharactersFromDB()
+    func filterCharacters(by status: Status?)
 }
 
 final class CharacterPresenter: ICharacterPresenter {
@@ -21,6 +22,7 @@ final class CharacterPresenter: ICharacterPresenter {
     private let networkService: INetworkService
     private let databaseService: IDatabaseService
     private(set) var characters: [CharacterEntity] = []
+    private var currentStatus: Status?
     
     init(ui: ICharacterUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui
@@ -62,6 +64,27 @@ final class CharacterPresenter: ICharacterPresenter {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let characters = realm.objects(CharacterEntity.self)
+                self.characters = Array(characters)
+                self.ui?.update()
+            } else {
+                print(DatabaseError.notInitialized)
+            }
+        }
+    }
+    
+    func filterCharacters(by status: Status?) {
+        DispatchQueue.main.async {
+            if let realm = try? Realm() {
+                let characters: Results<CharacterEntity>
+                if status == .unknown {
+                    characters = realm.objects(CharacterEntity.self).filter("status = 'unknown'")
+                } else if status == .alive {
+                    characters = realm.objects(CharacterEntity.self).filter("status = 'Alive'")
+                } else if status == .dead {
+                    characters = realm.objects(CharacterEntity.self).filter("status = 'Dead'")
+                } else {
+                    characters = realm.objects(CharacterEntity.self)
+                }
                 self.characters = Array(characters)
                 self.ui?.update()
             } else {
