@@ -54,6 +54,7 @@
 		865CD8FE2C1C0CCC00D7E9C6 /* EpisodeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD8FD2C1C0CCC00D7E9C6 /* EpisodeDetailPresenter.swift */; };
 		865CD9032C1C1ADA00D7E9C6 /* CharacterInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9022C1C1ADA00D7E9C6 /* CharacterInfoViewCell.swift */; };
 		865CD9052C1C965000D7E9C6 /* CharacterImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9042C1C965000D7E9C6 /* CharacterImageViewCell.swift */; };
+		865CD9072C1D4FC800D7E9C6 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		865CD8FD2C1C0CCC00D7E9C6 /* EpisodeDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailPresenter.swift; sourceTree = "<group>"; };
 		865CD9022C1C1ADA00D7E9C6 /* CharacterInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoViewCell.swift; sourceTree = "<group>"; };
 		865CD9042C1C965000D7E9C6 /* CharacterImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageViewCell.swift; sourceTree = "<group>"; };
+		865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				865CD8732C1578C500D7E9C6 /* App */,
 				865CD87A2C157D6F00D7E9C6 /* Constants */,
+				865CD9082C1D505800D7E9C6 /* Utils */,
 				865CD8822C15876800D7E9C6 /* Model */,
 				865CD8A02C16DCB500D7E9C6 /* Service */,
 				865CD87F2C15802600D7E9C6 /* View */,
@@ -380,6 +383,14 @@
 			path = Episode;
 			sourceTree = "<group>";
 		};
+		865CD9082C1D505800D7E9C6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -490,6 +501,7 @@
 				865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */,
 				865CD8F42C1C0B7700D7E9C6 /* CharacterDetailViewController.swift in Sources */,
 				865CD8E02C19CCA500D7E9C6 /* Page.swift in Sources */,
+				865CD9072C1D4FC800D7E9C6 /* DateUtils.swift in Sources */,
 				865CD8E82C1B14C800D7E9C6 /* EpisodeView.swift in Sources */,
 				865CD8EA2C1B14DA00D7E9C6 /* EpisodeViewCell.swift in Sources */,
 				865CD8792C157AEA00D7E9C6 /* EpisodeViewController.swift in Sources */,

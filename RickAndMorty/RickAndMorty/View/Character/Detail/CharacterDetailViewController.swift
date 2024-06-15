@@ -45,8 +45,10 @@ final class CharacterDetailViewController: UIViewController {
         characterDetailView.tableView.rowHeight = UITableView.automaticDimension
         characterDetailView.tableView.dataSource = self
         characterDetailView.tableView.delegate = self
-        characterDetailView.tableView.register(CharacterInfoViewCell.self, forCellReuseIdentifier: CharacterInfoViewCell.identifier)
-        characterDetailView.tableView.register(CharacterImageViewCell.self, forCellReuseIdentifier: CharacterImageViewCell.identifier)
+        characterDetailView.tableView.register(CharacterInfoViewCell.self, 
+                                               forCellReuseIdentifier: CharacterInfoViewCell.identifier)
+        characterDetailView.tableView.register(CharacterImageViewCell.self, 
+                                               forCellReuseIdentifier: CharacterImageViewCell.identifier)
     }
 }
 
@@ -76,7 +78,8 @@ extension CharacterDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterImageViewCell.identifier, for: indexPath) as? CharacterImageViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterImageViewCell.identifier, 
+                                                           for: indexPath) as? CharacterImageViewCell else {
                 return UITableViewCell()
             }
             if let characterImage = presenter.characterImage {
@@ -84,7 +87,8 @@ extension CharacterDetailViewController: UITableViewDataSource {
             }
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterInfoViewCell.identifier, for: indexPath) as? CharacterInfoViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterInfoViewCell.identifier, 
+                                                           for: indexPath) as? CharacterInfoViewCell else {
                 return UITableViewCell()
             }
             let info = presenter.characterInfo[indexPath.row]
