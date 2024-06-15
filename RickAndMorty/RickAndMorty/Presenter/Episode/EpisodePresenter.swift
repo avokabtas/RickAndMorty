@@ -13,6 +13,7 @@ protocol IEpisodePresenter {
     func loadEpisodes()
     func searchEpisodes(with name: String)
     func fetchEpisodesFromDB()
+    func fullEpisodeName(for episode: EpisodeEntity) -> String
 }
 
 final class EpisodePresenter: IEpisodePresenter {
@@ -44,7 +45,7 @@ final class EpisodePresenter: IEpisodePresenter {
         DispatchQueue.main.async {
             if let realm = try? Realm() {
                 let episodes = realm.objects(EpisodeEntity.self)
-                    .filter("name CONTAINS[c] %@", name)
+                    .filter("name CONTAINS[c] %@ OR episode CONTAINS[c] %@", name, name)
                 self.episodes = Array(episodes)
                 self.ui?.update()
             } else {
@@ -63,5 +64,9 @@ final class EpisodePresenter: IEpisodePresenter {
                 print(DatabaseError.notInitialized)
             }
         }
+    }
+    
+    func fullEpisodeName(for episode: EpisodeEntity) -> String {
+        return "\(episode.episode) - \(episode.name)"
     }
 }
