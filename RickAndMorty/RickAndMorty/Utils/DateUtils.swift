@@ -12,6 +12,7 @@ struct DateUtils {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         guard let date = inputFormatter.date(from: isoDateString) else {
             return isoDateString
