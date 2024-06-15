@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol ICharacterPresenter: AnyObject {
     var characters: [CharacterEntity] { get }
+    func didLoad(ui: ICharacterUI)
     func loadCharacters()
     func searchCharacters(with name: String)
     func fetchCharactersFromDB()
@@ -25,6 +26,10 @@ final class CharacterPresenter: ICharacterPresenter {
         self.ui = ui
         self.networkService = networkService
         self.databaseService = databaseService
+    }
+    
+    func didLoad(ui: ICharacterUI) {
+        self.ui = ui
     }
     
     func loadCharacters() {

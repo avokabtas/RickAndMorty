@@ -33,6 +33,7 @@ final class EpisodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.didLoad(ui: self)
         setupNavBar()
         setupSearch()
         setupView()
@@ -75,6 +76,12 @@ extension EpisodeViewController: IEpisodeUI {
 extension EpisodeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episode = presenter.episodes[indexPath.row]
+        let detailVC = Assembly.createEpisodeDetailModule(with: episode)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }

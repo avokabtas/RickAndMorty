@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol IEpisodePresenter {
     var episodes: [EpisodeEntity] { get }
+    func didLoad(ui: IEpisodeUI)
     func loadEpisodes()
     func searchEpisodes(with name: String)
     func fetchEpisodesFromDB()
@@ -26,6 +27,10 @@ final class EpisodePresenter: IEpisodePresenter {
         self.ui = ui
         self.networkService = networkService
         self.databaseService = databaseService
+    }
+    
+    func didLoad(ui: IEpisodeUI) {
+        self.ui = ui
     }
     
     func loadEpisodes() {

@@ -33,6 +33,7 @@ final class CharacterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.didLoad(ui: self)
         setupNavBar()
         setupSearch()
         setupView()

@@ -13,6 +13,7 @@ protocol ICharacterDetailPresenter: AnyObject {
     var characterName: String { get }
     var characterImage: UIImage? { get }
     var characterInfo: [(title: String, value: String)] { get }
+    func didLoad(ui: ICharacterDetailUI)
 }
 
 final class CharacterDetailPresenter: ICharacterDetailPresenter {
@@ -21,6 +22,10 @@ final class CharacterDetailPresenter: ICharacterDetailPresenter {
     
     init(character: CharacterEntity) {
         self.character = character
+    }
+    
+    func didLoad(ui: ICharacterDetailUI) {
+        self.ui = ui
     }
     
     var characterName: String {

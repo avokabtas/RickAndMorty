@@ -33,6 +33,7 @@ final class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.didLoad(ui: self)
         setupNavBar()
         setupSearch()
         setupView()
@@ -78,8 +79,9 @@ extension LocationViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        //
+        let location = presenter.locations[indexPath.row]
+        let detailVC = Assembly.createLocationDetailModule(with: location)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

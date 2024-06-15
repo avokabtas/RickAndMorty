@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol ILocationPresenter {
     var locations: [LocationEntity] { get }
+    func didLoad(ui: ILocationUI)
     func loadLocations()
     func searchLocations(with name: String)
     func fetchLocationsFromDB()
@@ -25,6 +26,10 @@ final class LocationPresenter: ILocationPresenter {
         self.ui = ui
         self.networkService = networkService
         self.databaseService = databaseService
+    }
+    
+    func didLoad(ui: ILocationUI) {
+        self.ui = ui
     }
     
     func loadLocations() {

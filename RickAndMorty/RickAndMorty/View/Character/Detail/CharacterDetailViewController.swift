@@ -32,6 +32,7 @@ final class CharacterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.didLoad(ui: self)
         setupTitle()
         setupView()
     }
