@@ -51,6 +51,7 @@ final class EpisodeViewController: UIViewController {
     private func setupNavBar() {
         title = TextData.titleEpisodes.rawValue
         navigationItem.searchController = searchController
+        setupScrollToTopButton(for: episodeView.tableView)
     }
     
     private func setupView() {

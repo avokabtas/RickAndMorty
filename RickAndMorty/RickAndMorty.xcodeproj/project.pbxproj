@@ -60,6 +60,8 @@
 		865CD9112C1EC0CE00D7E9C6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9102C1EC0CE00D7E9C6 /* Font.swift */; };
 		865CD9132C1EC28D00D7E9C6 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9122C1EC28D00D7E9C6 /* Table.swift */; };
 		865CD9152C1EC69800D7E9C6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9142C1EC69800D7E9C6 /* Color.swift */; };
+		865CD9172C1F043D00D7E9C6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9162C1F043D00D7E9C6 /* Icon.swift */; };
+		865CD9192C1F0A6F00D7E9C6 /* ScrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		865CD9102C1EC0CE00D7E9C6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		865CD9122C1EC28D00D7E9C6 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		865CD9142C1EC69800D7E9C6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		865CD9162C1F043D00D7E9C6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				865CD87B2C157D8800D7E9C6 /* TabBar.swift */,
+				865CD9162C1F043D00D7E9C6 /* Icon.swift */,
 				865CD9122C1EC28D00D7E9C6 /* Table.swift */,
 				865CD9142C1EC69800D7E9C6 /* Color.swift */,
 				865CD9102C1EC0CE00D7E9C6 /* Font.swift */,
@@ -402,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */,
+				865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -513,12 +519,14 @@
 				865CD8922C16B7FE00D7E9C6 /* TextData.swift in Sources */,
 				865CD8C92C173DE700D7E9C6 /* Assembly.swift in Sources */,
 				865CD8902C16B6A900D7E9C6 /* EpisodeEntity.swift in Sources */,
+				865CD9192C1F0A6F00D7E9C6 /* ScrollToTop.swift in Sources */,
 				865CD8D12C1843F200D7E9C6 /* DependencyContainer.swift in Sources */,
 				865CD9152C1EC69800D7E9C6 /* Color.swift in Sources */,
 				865CD8CF2C18135900D7E9C6 /* EpisodePresenter.swift in Sources */,
 				865CD8FA2C1C0CAD00D7E9C6 /* CharacterDetailPresenter.swift in Sources */,
 				865CD8852C16B53300D7E9C6 /* Location.swift in Sources */,
 				865CD8602C1578B800D7E9C6 /* AppDelegate.swift in Sources */,
+				865CD9172C1F043D00D7E9C6 /* Icon.swift in Sources */,
 				865CD8DC2C1991C800D7E9C6 /* CharacterDetailView.swift in Sources */,
 				865CD8D82C19747E00D7E9C6 /* CharacterView.swift in Sources */,
 				865CD9132C1EC28D00D7E9C6 /* Table.swift in Sources */,

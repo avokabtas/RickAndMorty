@@ -51,6 +51,7 @@ final class LocationViewController: UIViewController {
     private func setupNavBar() {
         title = TextData.titleLocations.rawValue
         navigationItem.searchController = searchController
+        setupScrollToTopButton(for: locationView.tableView)
     }
     
     private func setupView() {

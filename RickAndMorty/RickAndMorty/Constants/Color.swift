@@ -9,5 +9,5 @@ import Foundation
 import UIKit.UIColor
 
 enum Color {
-    static let backgroundView: UIColor = .white
+    static let backgroundView: UIColor = .systemBackground
 }
