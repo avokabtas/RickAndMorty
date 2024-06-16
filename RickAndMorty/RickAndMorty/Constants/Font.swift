@@ -10,4 +10,5 @@ import UIKit.UIFont
 
 enum Font {
     static let cell = UIFont.systemFont(ofSize: 17, weight: .medium)
+    static let noLimit = 0
 }

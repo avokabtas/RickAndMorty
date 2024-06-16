@@ -14,7 +14,7 @@ class LocationInfoViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
+        label.numberOfLines = Font.noLimit
         label.textColor = .gray
         label.textAlignment = .left
         return label
@@ -24,7 +24,7 @@ class LocationInfoViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.cell
-        label.numberOfLines = 2
+        label.numberOfLines = Font.noLimit
         label.textAlignment = .right
         return label
     }()

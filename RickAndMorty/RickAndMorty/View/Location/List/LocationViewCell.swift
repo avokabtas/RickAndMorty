@@ -14,9 +14,9 @@ final class LocationViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.textAlignment = .left
         label.font = Font.cell
+        label.numberOfLines = Font.noLimit
+        label.textAlignment = .left
         return label
     }()
     
