@@ -9,5 +9,5 @@ import Foundation
 import UIKit.UIImage
 
 enum Icon {
-    static let arrowUP = UIImage(systemName: "arrow.uturn.up.circle.fill")
+    static let arrowUP = UIImage(systemName: "arrow.uturn.up")
 }
