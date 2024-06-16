@@ -27,6 +27,7 @@ final class LocationDetailView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = Color.backgroundView
         addSubview(tableView)
     }
     

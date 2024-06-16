@@ -27,6 +27,7 @@ class EpisodeDetailView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = Color.backgroundView
         addSubview(tableView)
     }
     

@@ -100,7 +100,7 @@ extension CharacterDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "Info"
+            return Table.infoSection
         }
         return nil
     }

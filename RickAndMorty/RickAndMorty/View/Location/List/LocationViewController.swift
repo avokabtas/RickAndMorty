@@ -49,7 +49,7 @@ final class LocationViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        title = TextData.locationTitleVC.rawValue
+        title = TextData.titleLocations.rawValue
         navigationItem.searchController = searchController
     }
     
@@ -75,7 +75,7 @@ extension LocationViewController: ILocationUI {
 
 extension LocationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
+        return Table.locationHeightCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,7 +111,7 @@ extension LocationViewController: UITableViewDataSource {
 extension LocationViewController: UISearchBarDelegate {
     private func setupSearch() {
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search the Location"
+        searchController.searchBar.placeholder = TextData.searchLocation.rawValue
         searchController.obscuresBackgroundDuringPresentation = false
     }
     

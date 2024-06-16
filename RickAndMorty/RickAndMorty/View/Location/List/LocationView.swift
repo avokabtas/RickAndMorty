@@ -33,7 +33,7 @@ final class LocationView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .white
+        backgroundColor = Color.backgroundView
         addSubview(tableView)
         addSubview(indicatorView)
     }

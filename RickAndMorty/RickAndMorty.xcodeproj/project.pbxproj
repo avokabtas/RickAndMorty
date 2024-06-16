@@ -57,6 +57,9 @@
 		865CD9072C1D4FC800D7E9C6 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */; };
 		865CD90A2C1D7A7200D7E9C6 /* LocationInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9092C1D7A7200D7E9C6 /* LocationInfoViewCell.swift */; };
 		865CD90C2C1D814F00D7E9C6 /* EpisodeInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD90B2C1D814F00D7E9C6 /* EpisodeInfoViewCell.swift */; };
+		865CD9112C1EC0CE00D7E9C6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9102C1EC0CE00D7E9C6 /* Font.swift */; };
+		865CD9132C1EC28D00D7E9C6 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9122C1EC28D00D7E9C6 /* Table.swift */; };
+		865CD9152C1EC69800D7E9C6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9142C1EC69800D7E9C6 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +113,9 @@
 		865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		865CD9092C1D7A7200D7E9C6 /* LocationInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewCell.swift; sourceTree = "<group>"; };
 		865CD90B2C1D814F00D7E9C6 /* EpisodeInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeInfoViewCell.swift; sourceTree = "<group>"; };
+		865CD9102C1EC0CE00D7E9C6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		865CD9122C1EC28D00D7E9C6 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		865CD9142C1EC69800D7E9C6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				865CD87B2C157D8800D7E9C6 /* TabBar.swift */,
+				865CD9122C1EC28D00D7E9C6 /* Table.swift */,
+				865CD9142C1EC69800D7E9C6 /* Color.swift */,
+				865CD9102C1EC0CE00D7E9C6 /* Font.swift */,
 				865CD8912C16B7FE00D7E9C6 /* TextData.swift */,
 				865CD8C52C17369E00D7E9C6 /* Endpoint.swift */,
 				865CD8DF2C19CCA500D7E9C6 /* Page.swift */,
@@ -505,13 +514,16 @@
 				865CD8C92C173DE700D7E9C6 /* Assembly.swift in Sources */,
 				865CD8902C16B6A900D7E9C6 /* EpisodeEntity.swift in Sources */,
 				865CD8D12C1843F200D7E9C6 /* DependencyContainer.swift in Sources */,
+				865CD9152C1EC69800D7E9C6 /* Color.swift in Sources */,
 				865CD8CF2C18135900D7E9C6 /* EpisodePresenter.swift in Sources */,
 				865CD8FA2C1C0CAD00D7E9C6 /* CharacterDetailPresenter.swift in Sources */,
 				865CD8852C16B53300D7E9C6 /* Location.swift in Sources */,
 				865CD8602C1578B800D7E9C6 /* AppDelegate.swift in Sources */,
 				865CD8DC2C1991C800D7E9C6 /* CharacterDetailView.swift in Sources */,
 				865CD8D82C19747E00D7E9C6 /* CharacterView.swift in Sources */,
+				865CD9132C1EC28D00D7E9C6 /* Table.swift in Sources */,
 				865CD9052C1C965000D7E9C6 /* CharacterImageViewCell.swift in Sources */,
+				865CD9112C1EC0CE00D7E9C6 /* Font.swift in Sources */,
 				865CD8B82C16E7EC00D7E9C6 /* NetworkService.swift in Sources */,
 				865CD8F62C1C0B9600D7E9C6 /* LocationDetailViewController.swift in Sources */,
 				865CD8DE2C19B10F00D7E9C6 /* DatabaseError.swift in Sources */,
@@ -680,6 +692,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -710,6 +723,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

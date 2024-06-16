@@ -23,7 +23,7 @@ class LocationInfoViewCell: UITableViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 17, weight: .medium)
+        label.font = Font.cell
         label.numberOfLines = 2
         label.textAlignment = .right
         return label

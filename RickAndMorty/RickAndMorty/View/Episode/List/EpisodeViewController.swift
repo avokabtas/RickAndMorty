@@ -49,7 +49,7 @@ final class EpisodeViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        title = TextData.episodeTitleVC.rawValue
+        title = TextData.titleEpisodes.rawValue
         navigationItem.searchController = searchController
     }
     
@@ -75,7 +75,7 @@ extension EpisodeViewController: IEpisodeUI {
 
 extension EpisodeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
+        return Table.episodeHeightCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -113,7 +113,7 @@ extension EpisodeViewController: UITableViewDataSource {
 extension EpisodeViewController: UISearchBarDelegate {
     private func setupSearch() {
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search the Episode"
+        searchController.searchBar.placeholder = TextData.searchEpisode.rawValue
         searchController.obscuresBackgroundDuringPresentation = false
     }
     

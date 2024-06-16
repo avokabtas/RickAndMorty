@@ -27,6 +27,7 @@ final class CharacterDetailView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = Color.backgroundView
         addSubview(tableView)
     }
     

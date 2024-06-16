@@ -34,7 +34,6 @@ final class CharacterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.didLoad(ui: self)
-        //view.backgroundColor = UIColor(named: "backgroundColor")
         setupNavBar()
         setupSearch()
         setupView()
@@ -51,7 +50,7 @@ final class CharacterViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        title = TextData.characterTitleVC.rawValue
+        title = TextData.titleCharacters.rawValue
         navigationItem.searchController = searchController
     }
     
@@ -94,7 +93,7 @@ extension CharacterViewController: ICharacterUI {
 
 extension CharacterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return Table.characterHeightCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -136,7 +135,7 @@ extension CharacterViewController: UITableViewDataSource {
 extension CharacterViewController: UISearchBarDelegate {
     private func setupSearch() {
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search the Сharacter"
+        searchController.searchBar.placeholder = TextData.searchCharacter.rawValue
         searchController.obscuresBackgroundDuringPresentation = false
     }
     

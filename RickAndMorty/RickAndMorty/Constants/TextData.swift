@@ -8,7 +8,11 @@
 import Foundation
 
 enum TextData: String {
-    case characterTitleVC = "Characters"
-    case locationTitleVC = "Locations"
-    case episodeTitleVC = "Episodes"
+    case titleCharacters = "Characters"
+    case titleLocations = "Locations"
+    case titleEpisodes = "Episodes"
+    
+    case searchCharacter = "Search the Сharacter"
+    case searchLocation = "Search the Location"
+    case searchEpisode = "Search the Episode"
 }

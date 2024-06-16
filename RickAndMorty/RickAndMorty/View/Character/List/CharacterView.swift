@@ -41,7 +41,7 @@ final class CharacterView: UIView {
     }
     
     private func setupView() {
-        //backgroundColor = UIColor(named: "backgroundColor")
+        backgroundColor = Color.backgroundView
         addSubview(tableView)
         addSubview(indicatorView)
     }

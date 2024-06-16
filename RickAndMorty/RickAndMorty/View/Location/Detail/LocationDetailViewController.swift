@@ -80,7 +80,7 @@ extension LocationDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Info"
+        return Table.infoSection
     }
 }
 

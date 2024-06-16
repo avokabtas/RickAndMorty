@@ -16,7 +16,7 @@ final class EpisodeViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .medium)
+        label.font = Font.cell
         return label
     }()
     
