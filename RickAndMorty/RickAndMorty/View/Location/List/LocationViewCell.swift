@@ -12,11 +12,12 @@ final class LocationViewCell: UITableViewCell {
     static let identifier = String(describing: LocationViewCell.self)
     
     private let nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.numberOfLines = 2
-        nameLabel.textAlignment = .left
-        return nameLabel
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

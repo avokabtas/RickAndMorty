@@ -34,6 +34,7 @@ final class CharacterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.didLoad(ui: self)
+        //view.backgroundColor = UIColor(named: "backgroundColor")
         setupNavBar()
         setupSearch()
         setupView()
@@ -41,7 +42,7 @@ final class CharacterViewController: UIViewController {
         characterView.startIndicator()
         presenter.loadCharacters()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let indexPath = characterView.tableView.indexPathForSelectedRow {
