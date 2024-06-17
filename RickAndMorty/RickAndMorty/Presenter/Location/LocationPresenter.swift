@@ -14,6 +14,7 @@ protocol ILocationPresenter {
     func loadLocations()
     func searchLocations(with name: String)
     func fetchLocationsFromDB()
+    func getFormattedLocationInfo(for location: LocationEntity) -> (name: String, type: String)
 }
 
 final class LocationPresenter: ILocationPresenter {
@@ -68,5 +69,9 @@ final class LocationPresenter: ILocationPresenter {
             self.locations = Array(locations)
             self.ui?.update()
         }
+    }
+    
+    func getFormattedLocationInfo(for location: LocationEntity) -> (name: String, type: String) {
+        return (name: location.name, type: location.type)
     }
 }

@@ -102,7 +102,8 @@ extension LocationViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         let location = presenter.locations[indexPath.row]
-        cell.configure(with: location.name)
+        let fullName = presenter.getFormattedLocationInfo(for: location)
+        cell.configure(with: fullName.name, type: fullName.type)
         
         return cell
     }
