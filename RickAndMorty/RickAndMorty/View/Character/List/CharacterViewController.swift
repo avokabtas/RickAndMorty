@@ -121,14 +121,9 @@ extension CharacterViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         let character = presenter.characters[indexPath.row]
-        
-        if let imageData = character.imageData, let image = UIImage(data: imageData) {
-            cell.configure(with: image, name: character.name, status: character.status)
-        } else {
-            cell.configure(with: nil, name: character.name, status: character.status)
-        }
-        
-        
+        let info = presenter.getFormattedCharacterInfo(for: character)
+        cell.configure(with: info.image, name: info.name, status: info.status)
+                
         return cell
     }
 }

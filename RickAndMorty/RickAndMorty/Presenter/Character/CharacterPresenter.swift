@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit.UIImage
 
 protocol ICharacterPresenter: AnyObject {
     var characters: [CharacterEntity] { get }
@@ -15,6 +16,7 @@ protocol ICharacterPresenter: AnyObject {
     func searchCharacters(with name: String)
     func fetchCharactersFromDB()
     func filterCharacters(by status: Status?)
+    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
 }
 
 final class CharacterPresenter: ICharacterPresenter {
@@ -90,6 +92,14 @@ final class CharacterPresenter: ICharacterPresenter {
             }
             self.characters = Array(characters)
             self.ui?.update()
+        }
+    }
+    
+    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
+        if let imageData = character.imageData, let image = UIImage(data: imageData) {
+            return (image: image, name: character.name, status: character.status)
+        } else {
+            return (image: nil, name: character.name, status: character.status)
         }
     }
 }
