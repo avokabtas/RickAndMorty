@@ -46,50 +46,51 @@ final class CharacterPresenter: ICharacterPresenter {
             }
         }
     }
-    
+
     func searchCharacters(with name: String) {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let characters = realm.objects(CharacterEntity.self)
-                    .filter("name CONTAINS[c] %@", name)
-                self.characters = Array(characters)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let characters = realm.objects(CharacterEntity.self)
+                .filter("name CONTAINS[c] %@", name)
+            self.characters = Array(characters)
+            self.ui?.update()
         }
     }
     
     func fetchCharactersFromDB() {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let characters = realm.objects(CharacterEntity.self)
-                self.characters = Array(characters)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let characters = realm.objects(CharacterEntity.self)
+            self.characters = Array(characters)
+            self.ui?.update()
         }
     }
-    
+
     func filterCharacters(by status: Status?) {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let characters: Results<CharacterEntity>
-                if status == .unknown {
-                    characters = realm.objects(CharacterEntity.self).filter("status = 'unknown'")
-                } else if status == .alive {
-                    characters = realm.objects(CharacterEntity.self).filter("status = 'Alive'")
-                } else if status == .dead {
-                    characters = realm.objects(CharacterEntity.self).filter("status = 'Dead'")
-                } else {
-                    characters = realm.objects(CharacterEntity.self)
-                }
-                self.characters = Array(characters)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let characters: Results<CharacterEntity>
+            switch status {
+            case .unknown:
+                characters = realm.objects(CharacterEntity.self).filter("status = 'unknown'")
+            case .alive:
+                characters = realm.objects(CharacterEntity.self).filter("status = 'Alive'")
+            case .dead:
+                characters = realm.objects(CharacterEntity.self).filter("status = 'Dead'")
+            default:
+                characters = realm.objects(CharacterEntity.self)
+            }
+            self.characters = Array(characters)
+            self.ui?.update()
         }
     }
 }

@@ -47,26 +47,26 @@ final class LocationPresenter: ILocationPresenter {
     
     func searchLocations(with name: String) {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let locations = realm.objects(LocationEntity.self)
-                    .filter("name CONTAINS[c] %@", name)
-                self.locations = Array(locations)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let locations = realm.objects(LocationEntity.self)
+                .filter("name CONTAINS[c] %@", name)
+            self.locations = Array(locations)
+            self.ui?.update()
         }
     }
     
     func fetchLocationsFromDB() {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let locations = realm.objects(LocationEntity.self)
-                self.locations = Array(locations)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let locations = realm.objects(LocationEntity.self)
+            self.locations = Array(locations)
+            self.ui?.update()
         }
     }
 }

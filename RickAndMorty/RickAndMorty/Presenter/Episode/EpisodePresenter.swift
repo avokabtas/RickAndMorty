@@ -48,26 +48,26 @@ final class EpisodePresenter: IEpisodePresenter {
     
     func searchEpisodes(with name: String) {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let episodes = realm.objects(EpisodeEntity.self)
-                    .filter("name CONTAINS[c] %@ OR episode CONTAINS[c] %@", name, name)
-                self.episodes = Array(episodes)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let episodes = realm.objects(EpisodeEntity.self)
+                .filter("name CONTAINS[c] %@ OR episode CONTAINS[c] %@", name, name)
+            self.episodes = Array(episodes)
+            self.ui?.update()
         }
     }
     
     func fetchEpisodesFromDB() {
         DispatchQueue.main.async {
-            if let realm = try? Realm() {
-                let episodes = realm.objects(EpisodeEntity.self)
-                self.episodes = Array(episodes)
-                self.ui?.update()
-            } else {
+            guard let realm = try? Realm() else {
                 print(DatabaseError.notInitialized)
+                return
             }
+            let episodes = realm.objects(EpisodeEntity.self)
+            self.episodes = Array(episodes)
+            self.ui?.update()
         }
     }
     
