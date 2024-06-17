@@ -35,7 +35,7 @@ final class CharacterViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.cellBodyText
-        label.textColor = Color.descriptionLabel
+        label.textColor = Color.secondaryText
         label.textAlignment = .left
         return label
     }()

@@ -42,8 +42,6 @@ final class EpisodeDetailViewController: UIViewController {
     }
     
     private func setupView() {
-        // Настройка для поддержки динамической высоты ячеек
-        episodeDetailView.tableView.rowHeight = UITableView.automaticDimension
         episodeDetailView.tableView.dataSource = self
         episodeDetailView.tableView.delegate = self
         episodeDetailView.tableView.register(EpisodeInfoViewCell.self,
@@ -89,9 +87,5 @@ extension EpisodeDetailViewController: UITableViewDataSource {
 extension EpisodeDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }

@@ -42,8 +42,6 @@ final class CharacterDetailViewController: UIViewController {
     }
     
     private func setupView() {
-        // Настройка для поддержки динамической высоты ячеек
-        characterDetailView.tableView.rowHeight = UITableView.automaticDimension
         characterDetailView.tableView.dataSource = self
         characterDetailView.tableView.delegate = self
         characterDetailView.tableView.register(CharacterInfoViewCell.self, 
@@ -111,9 +109,5 @@ extension CharacterDetailViewController: UITableViewDataSource {
 extension CharacterDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }

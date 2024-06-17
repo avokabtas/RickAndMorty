@@ -25,7 +25,7 @@ final class EpisodeViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.cellBodyText
         label.textAlignment = .left
-        label.textColor = Color.descriptionLabel
+        label.textColor = Color.secondaryText
         return label
     }()
     

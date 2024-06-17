@@ -42,8 +42,6 @@ final class LocationDetailViewController: UIViewController {
     }
     
     private func setupView() {
-        // Настройка для поддержки динамической высоты ячеек
-        locationDetailView.tableView.rowHeight = UITableView.automaticDimension
         locationDetailView.tableView.dataSource = self
         locationDetailView.tableView.delegate = self
         locationDetailView.tableView.register(LocationInfoViewCell.self,
@@ -89,9 +87,5 @@ extension LocationDetailViewController: UITableViewDataSource {
 extension LocationDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }
