@@ -9,7 +9,7 @@ import Foundation
 
 enum Table {
     static let characterHeightCell: CGFloat = 120
-    static let locationHeightCell: CGFloat = 64
-    static let episodeHeightCell: CGFloat = 64
+    static let locationHeightCell: CGFloat = 80
+    static let episodeHeightCell: CGFloat = 80
     static let infoSection = "Info"
 }

@@ -20,6 +20,24 @@ final class EpisodeViewCell: UITableViewCell {
         return label
     }()
     
+    private let episodeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Font.cellBodyText
+        label.textAlignment = .left
+        label.textColor = Color.descriptionLabel
+        return label
+    }()
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -30,21 +48,23 @@ final class EpisodeViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func configure(with name: String) {
+
+    func configure(with name: String, episode: String) {
         nameLabel.text = name
+        episodeLabel.text = episode
     }
     
     private func setupView() {
-        contentView.addSubview(nameLabel)
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(episodeLabel)
+        contentView.addSubview(stackView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 }

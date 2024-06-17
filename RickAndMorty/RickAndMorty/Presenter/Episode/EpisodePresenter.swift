@@ -14,7 +14,7 @@ protocol IEpisodePresenter {
     func loadEpisodes()
     func searchEpisodes(with name: String)
     func fetchEpisodesFromDB()
-    func fullEpisodeName(for episode: EpisodeEntity) -> String
+    func getFormattedEpisodeInfo(for episode: EpisodeEntity) -> (name: String, episode: String)
 }
 
 final class EpisodePresenter: IEpisodePresenter {
@@ -70,8 +70,8 @@ final class EpisodePresenter: IEpisodePresenter {
             self.ui?.update()
         }
     }
-    
-    func fullEpisodeName(for episode: EpisodeEntity) -> String {
-        return "\(episode.episode) - \(episode.name)"
+
+    func getFormattedEpisodeInfo(for episode: EpisodeEntity) -> (name: String, episode: String) {
+        return (name: episode.name, episode: episode.episode)
     }
 }

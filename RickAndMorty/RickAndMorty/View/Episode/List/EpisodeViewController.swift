@@ -103,8 +103,8 @@ extension EpisodeViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         let episode = presenter.episodes[indexPath.row]
-        let fullName = presenter.fullEpisodeName(for: episode)
-        cell.configure(with: fullName)
+        let fullName = presenter.getFormattedEpisodeInfo(for: episode)
+        cell.configure(with: fullName.name, episode: fullName.episode)
         
         return cell
     }
