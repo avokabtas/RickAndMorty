@@ -34,8 +34,7 @@ final class LocationDetailPresenter: ILocationDetailPresenter {
         return [
             ("Type:", location.type),
             ("Dimension:", location.dimension),
-            ("Number of residents:", String(location.residents.count)),
-            ("Created:", DateUtils.formattedDate(from: location.created))
+            ("Number of residents:", String(location.residents.count))
         ]
     }
 }

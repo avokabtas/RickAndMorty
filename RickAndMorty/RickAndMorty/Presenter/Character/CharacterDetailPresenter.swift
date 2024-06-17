@@ -45,8 +45,7 @@ final class CharacterDetailPresenter: ICharacterDetailPresenter {
             ("Gender:", character.gender),
             ("Origin:", character.originName),
             ("Location:", character.locationName),
-            ("Number of episodes:", String(character.episodes.count)),
-            ("Created:", DateUtils.formattedDate(from: character.created))
+            ("Number of episodes:", String(character.episodes.count))
         ]
     }
 }

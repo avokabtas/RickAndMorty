@@ -34,8 +34,7 @@ final class EpisodeDetailPresenter: IEpisodeDetailPresenter {
         return [
             ("Air Date:", episode.airDate),
             ("Episode:", episode.episode),
-            ("Number of characters:", String(episode.characters.count)),
-            ("Created:", DateUtils.formattedDate(from: episode.created))
+            ("Number of characters:", String(episode.characters.count))
         ]
     }
 }
