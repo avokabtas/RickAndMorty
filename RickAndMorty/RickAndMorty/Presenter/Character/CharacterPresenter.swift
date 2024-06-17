@@ -22,7 +22,6 @@ final class CharacterPresenter: ICharacterPresenter {
     private let networkService: INetworkService
     private let databaseService: IDatabaseService
     private(set) var characters: [CharacterEntity] = []
-    private var currentStatus: Status?
     
     init(ui: ICharacterUI?, networkService: INetworkService, databaseService: IDatabaseService) {
         self.ui = ui

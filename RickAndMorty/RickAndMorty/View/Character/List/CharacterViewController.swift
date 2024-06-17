@@ -123,10 +123,11 @@ extension CharacterViewController: UITableViewDataSource {
         let character = presenter.characters[indexPath.row]
         
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
-            cell.configure(with: image, with: character.name)
+            cell.configure(with: image, name: character.name, status: character.status)
         } else {
-            cell.configure(with: nil, with: character.name)
+            cell.configure(with: nil, name: character.name, status: character.status)
         }
+        
         
         return cell
     }

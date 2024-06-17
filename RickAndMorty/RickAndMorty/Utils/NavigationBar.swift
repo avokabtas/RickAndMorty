@@ -12,7 +12,7 @@ struct NavigationBar {
     func setupColor(for viewController: UIViewController) {
         guard let navigationController = viewController.navigationController else { return }
         
-        let labelColor = Color.label
+        let labelColor = Color.mainTitleNavBar
         navigationController.navigationBar.largeTitleTextAttributes = [.foregroundColor: labelColor]
         navigationController.navigationBar.titleTextAttributes = [.foregroundColor: labelColor]
     }

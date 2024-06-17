@@ -15,7 +15,7 @@ class EpisodeInfoViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = Font.noLimit
-        label.textColor = .gray
+        label.textColor = Color.descriptionLabel
         label.textAlignment = .left
         return label
     }()
@@ -23,7 +23,7 @@ class EpisodeInfoViewCell: UITableViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Font.cell
+        label.font = Font.cellMainText
         label.numberOfLines = Font.noLimit
         label.textAlignment = .right
         return label

@@ -9,6 +9,7 @@ import Foundation
 import UIKit.UIFont
 
 enum Font {
-    static let cell = UIFont.systemFont(ofSize: 17, weight: .medium)
+    static let cellMainText = UIFont.systemFont(ofSize: 17, weight: .medium)
+    static let cellBodyText = UIFont.systemFont(ofSize: 14)
     static let noLimit = 0
 }

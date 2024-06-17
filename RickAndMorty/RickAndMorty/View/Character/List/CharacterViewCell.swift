@@ -25,10 +25,46 @@ final class CharacterViewCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Font.cell
+        label.font = Font.cellMainText
         label.numberOfLines = Font.noLimit
         label.textAlignment = .left
         return label
+    }()
+    
+    private let statusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Font.cellBodyText
+        label.textColor = Color.descriptionLabel
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let statusIndicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 4
+        view.widthAnchor.constraint(equalToConstant: 8).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        return view
+    }()
+    
+    private let statusStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }()
+    
+    private let mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 8
+        return stackView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,24 +78,41 @@ final class CharacterViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with image: UIImage?, with name: String) {
+    func configure(with image: UIImage?, name: String, status: String) {
         characterImageView.image = image
         nameLabel.text = name
+        statusLabel.text = status
+        statusIndicator.backgroundColor = statusColor(for: status)
     }
     
     private func setupView() {
         contentView.addSubview(characterImageView)
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(mainStackView)
+        
+        statusStackView.addArrangedSubview(statusIndicator)
+        statusStackView.addArrangedSubview(statusLabel)
+        
+        mainStackView.addArrangedSubview(nameLabel)
+        mainStackView.addArrangedSubview(statusStackView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             characterImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-
-            nameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            mainStackView.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 16),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            mainStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
+    }
+    
+    private func statusColor(for status: String) -> UIColor {
+        switch status {
+        case "Alive": return Color.aliveStatus
+        case "Dead": return Color.deadStatus
+        case "unknown": return Color.unknownStatus
+        default: return .gray
+        }
     }
 }
