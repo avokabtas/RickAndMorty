@@ -50,6 +50,7 @@ final class EpisodeViewController: UIViewController {
     
     private func setupNavBar() {
         title = TextData.titleEpisodes.rawValue
+        NavigationBar().setupColor(for: self)
         navigationItem.searchController = searchController
         setupScrollToTopButton(for: episodeView.tableView)
     }

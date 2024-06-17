@@ -10,4 +10,5 @@ import UIKit.UIColor
 
 enum Color {
     static let backgroundView: UIColor = .systemBackground
+    static let label = UIColor(named: "textColor") ?? UIColor.label
 }

@@ -50,6 +50,7 @@ final class LocationViewController: UIViewController {
     
     private func setupNavBar() {
         title = TextData.titleLocations.rawValue
+        NavigationBar().setupColor(for: self)
         navigationItem.searchController = searchController
         setupScrollToTopButton(for: locationView.tableView)
     }

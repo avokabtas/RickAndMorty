@@ -51,6 +51,7 @@ final class CharacterViewController: UIViewController {
     
     private func setupNavBar() {
         title = TextData.titleCharacters.rawValue
+        NavigationBar().setupColor(for: self)
         navigationItem.searchController = searchController
         setupScrollToTopButton(for: characterView.tableView)
     }

@@ -62,6 +62,7 @@
 		865CD9152C1EC69800D7E9C6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9142C1EC69800D7E9C6 /* Color.swift */; };
 		865CD9172C1F043D00D7E9C6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9162C1F043D00D7E9C6 /* Icon.swift */; };
 		865CD9192C1F0A6F00D7E9C6 /* ScrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */; };
+		865CD91B2C20044000D7E9C6 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CD91A2C20044000D7E9C6 /* NavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		865CD9142C1EC69800D7E9C6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		865CD9162C1F043D00D7E9C6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTop.swift; sourceTree = "<group>"; };
+		865CD91A2C20044000D7E9C6 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 			children = (
 				865CD9062C1D4FC800D7E9C6 /* DateUtils.swift */,
 				865CD9182C1F0A6F00D7E9C6 /* ScrollToTop.swift */,
+				865CD91A2C20044000D7E9C6 /* NavigationBar.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				865CD9072C1D4FC800D7E9C6 /* DateUtils.swift in Sources */,
 				865CD8E82C1B14C800D7E9C6 /* EpisodeView.swift in Sources */,
 				865CD8EA2C1B14DA00D7E9C6 /* EpisodeViewCell.swift in Sources */,
+				865CD91B2C20044000D7E9C6 /* NavigationBar.swift in Sources */,
 				865CD8792C157AEA00D7E9C6 /* EpisodeViewController.swift in Sources */,
 				865CD8E62C1B14B500D7E9C6 /* LocationDetailView.swift in Sources */,
 				865CD8812C15806800D7E9C6 /* TabBarController.swift in Sources */,
