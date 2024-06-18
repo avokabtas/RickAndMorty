@@ -96,10 +96,6 @@ final class CharacterPresenter: ICharacterPresenter {
     }
     
     func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
-        if let imageData = character.imageData, let image = UIImage(data: imageData) {
-            return (image: image, name: character.name, status: character.status)
-        } else {
-            return (image: Icon.defaultImage, name: character.name, status: character.status)
-        }
+        return CharacterFormatter.getFormattedCharacterInfo(for: character)
     }
 }
