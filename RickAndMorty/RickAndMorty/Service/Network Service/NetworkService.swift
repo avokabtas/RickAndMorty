@@ -68,7 +68,7 @@ final class NetworkService: INetworkService {
         }.resume()
     }
     
-    /// Загрузка картинкой персонажей
+    /// Загрузка изображений персонажей
     private func downloadImages(for characters: [Character],
                                 completion: @escaping (Result<[Character], Error>) -> Void) {
         let group = DispatchGroup()

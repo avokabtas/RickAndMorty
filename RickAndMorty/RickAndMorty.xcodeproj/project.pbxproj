@@ -246,8 +246,8 @@
 		865CD8A02C16DCB500D7E9C6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				865CD8B92C16E7F900D7E9C6 /* Realm Service */,
 				865CD8B62C16E7C400D7E9C6 /* Network Service */,
+				865CD8B92C16E7F900D7E9C6 /* Realm Service */,
 			);
 			path = Service;
 			sourceTree = "<group>";

@@ -32,8 +32,8 @@ final class LocationDetailPresenter: ILocationDetailPresenter {
     
     var locationInfo: [(title: String, value: String)] {
         return [
-            ("Type:", location.type),
-            ("Dimension:", location.dimension),
+            ("Type:", location.type.isEmpty ? "unknown" : location.type),
+            ("Dimension:", location.dimension.isEmpty ? "unknown" : location.dimension),
             ("Number of residents:", String(location.residents.count))
         ]
     }

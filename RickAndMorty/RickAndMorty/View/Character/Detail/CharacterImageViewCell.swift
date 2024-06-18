@@ -34,8 +34,8 @@ final class CharacterImageViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with image: UIImage) {
-        characterImageView.image = image
+    func configure(with image: UIImage?) {
+        characterImageView.image = image ?? Icon.defaultImage
     }
     
     private func setupView() {

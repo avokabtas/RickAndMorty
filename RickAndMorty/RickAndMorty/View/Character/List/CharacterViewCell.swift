@@ -79,7 +79,7 @@ final class CharacterViewCell: UITableViewCell {
     }
     
     func configure(with image: UIImage?, name: String, status: String) {
-        characterImageView.image = image
+        characterImageView.image = image ?? Icon.defaultImage
         nameLabel.text = name
         statusLabel.text = status
         statusIndicator.backgroundColor = statusColor(for: status)
