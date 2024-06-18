@@ -14,4 +14,5 @@ enum Table {
     
     static let infoSection = "Info"
     static let residentsSection = "Residents"
+    static let charactersSection = "Characters"
 }

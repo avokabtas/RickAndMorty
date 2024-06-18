@@ -124,8 +124,10 @@ extension LocationDetailViewController {
                                                        for: indexPath) as? LocationInfoViewCell else {
             return UITableViewCell()
         }
+        
         let info = presenter.locationInfo[indexPath.row]
         cell.configure(with: info.title, with: info.value)
+        
         return cell
     }
     
@@ -133,6 +135,7 @@ extension LocationDetailViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoResidentsViewCell.identifier) as? NoResidentsViewCell else {
             return UITableViewCell()
         }
+        
         return cell
     }
     
@@ -141,9 +144,11 @@ extension LocationDetailViewController {
                                                        for: indexPath) as? CharacterViewCell else {
             return UITableViewCell()
         }
+        
         let character = presenter.getResidents(at: indexPath.row)
         let info = presenter.getFormattedCharacterInfo(for: character)
         cell.configure(with: info.image, name: info.name, status: info.status)
+        
         return cell
     }
 }

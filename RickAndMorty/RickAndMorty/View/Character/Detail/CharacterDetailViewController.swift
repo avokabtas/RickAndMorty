@@ -44,10 +44,8 @@ final class CharacterDetailViewController: UIViewController {
     private func setupView() {
         characterDetailView.tableView.dataSource = self
         characterDetailView.tableView.delegate = self
-        characterDetailView.tableView.register(CharacterInfoViewCell.self, 
-                                               forCellReuseIdentifier: CharacterInfoViewCell.identifier)
-        characterDetailView.tableView.register(CharacterImageViewCell.self, 
-                                               forCellReuseIdentifier: CharacterImageViewCell.identifier)
+        characterDetailView.tableView.register(CharacterInfoViewCell.self, forCellReuseIdentifier: CharacterInfoViewCell.identifier)
+        characterDetailView.tableView.register(CharacterImageViewCell.self, forCellReuseIdentifier: CharacterImageViewCell.identifier)
     }
 }
 
