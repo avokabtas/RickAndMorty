@@ -99,7 +99,7 @@ final class CharacterPresenter: ICharacterPresenter {
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
             return (image: image, name: character.name, status: character.status)
         } else {
-            return (image: nil, name: character.name, status: character.status)
+            return (image: Icon.defaultImage, name: character.name, status: character.status)
         }
     }
 }
