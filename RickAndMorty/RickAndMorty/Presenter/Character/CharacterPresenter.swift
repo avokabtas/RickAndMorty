@@ -16,7 +16,7 @@ protocol ICharacterPresenter: AnyObject {
     func searchCharacters(with name: String)
     func fetchCharactersFromDB()
     func filterCharacters(by status: Status?)
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
 }
 
 final class CharacterPresenter: ICharacterPresenter {
@@ -95,7 +95,7 @@ final class CharacterPresenter: ICharacterPresenter {
         }
     }
     
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
         return CharacterFormatter.getFormattedCharacterInfo(for: character)
     }
 }

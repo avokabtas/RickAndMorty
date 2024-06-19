@@ -16,7 +16,7 @@ protocol IEpisodeDetailPresenter: AnyObject {
     var characterCount: Int { get }
     func didLoad(ui: IEpisodeDetailUI)
     func getCharacters(at index: Int) -> CharacterEntity
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
 }
 
 final class EpisodeDetailPresenter: IEpisodeDetailPresenter {
@@ -63,7 +63,7 @@ final class EpisodeDetailPresenter: IEpisodeDetailPresenter {
         return character
     }
     
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
         return CharacterFormatter.getFormattedCharacterInfo(for: character)
     }
 }

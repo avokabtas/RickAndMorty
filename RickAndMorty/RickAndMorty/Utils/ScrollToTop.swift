@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-
     private struct AssociatedKeys {
         static var tableViewKey: UInt8 = 0
     }

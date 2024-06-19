@@ -14,9 +14,9 @@ class NoResidentsViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = TextData.noResidents.rawValue
-        label.textAlignment = .center
+        label.text = TextData.noData.rawValue
         label.textColor = Color.secondaryText
+        label.textAlignment = .center
         return label
     }()
     

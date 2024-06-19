@@ -133,7 +133,7 @@ extension EpisodeDetailViewController {
         }
         
         let character = presenter.getCharacters(at: indexPath.row)
-        let info = presenter.getFormattedCharacterInfo(for: character)
+        let info = presenter.getCharacterInfo(for: character)
         cell.configure(with: info.image, name: info.name, status: info.status)
         
         return cell

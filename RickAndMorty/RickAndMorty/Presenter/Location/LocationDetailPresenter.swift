@@ -16,7 +16,7 @@ protocol ILocationDetailPresenter: AnyObject {
     var residentCount: Int { get }
     func didLoad(ui: ILocationDetailUI)
     func getResidents(at index: Int) -> CharacterEntity
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String)
 }
 
 final class LocationDetailPresenter: ILocationDetailPresenter {
@@ -63,7 +63,7 @@ final class LocationDetailPresenter: ILocationDetailPresenter {
         return character
     }
     
-    func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
+    func getCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
         return CharacterFormatter.getFormattedCharacterInfo(for: character)
     }
 }

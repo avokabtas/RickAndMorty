@@ -16,5 +16,5 @@ enum TextData: String {
     case searchLocation = "Search the Location"
     case searchEpisode = "Search the Episode"
     
-    case noResidents = "No Residents"
+    case noData = "No Residents"
 }
