@@ -16,13 +16,22 @@
 - Локации: 126
 - Эпизоды: 51
 
+### Основные экраны
+
 Приложение использует архитектуру MVP (Model-View-Presenter) и включает следующие экраны:
+
 - Экран с персонажами.
 - Экран с локациями.
 - Экран с эпизодами.
 - У каждого из них есть экран с детальной информацией о персонаже, локации и эпизоде.
 
-Приложение загружает данные из API, сохраняет их в базу данных Realm. Приложение поддерживает поиск по всем экранам.
+### Основные функции
+
+- Поиск персонажей.
+- Фильтр персонажей по статусу (все, жив, мертв, неизвестен).
+- Автономный режим. Приложение загружает данные из API, сохраняет их в базу данных Realm.
+- Возможность делиться персонажами, локациями и эпизодами.
+- Темная тема.
 
 ### Структура проекта
 
@@ -53,6 +62,8 @@
 
 # Rick and Morty iOS App
 
+![rickandmorty](images/rickandmorty.png)
+
 > **Wubba lubba dub dub! Yeah, I invent robots for fun!**
 
 A project based on the «Rick and Morty» TV show.
@@ -67,6 +78,8 @@ The project is an application for displaying data from the [Rick and Morty API](
 - Locations: 126
 - Episodes: 51
 
+### Main Screens
+
 The app uses the MVP (Model-View-Presenter) architecture and includes the following screens:
 
 - Characters screen.
@@ -74,7 +87,13 @@ The app uses the MVP (Model-View-Presenter) architecture and includes the follow
 - Episodes screen.
 - Each of these screens has a detailed information screen about the character, location, or episode.
 
-The app loads data from the API and saves it to a Realm database. The app supports search functionality across all screens.
+### Key Features
+
+- Character search.
+- Filter characters by status (all, alive, dead, unknown).
+- Offline mode. The application fetches data from the API and saves it to the Realm database.
+- Ability to share characters, locations, and episodes.
+- Dark mode.
 
 ### Project Structure
 

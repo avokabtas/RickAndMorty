@@ -35,6 +35,7 @@ final class EpisodeDetailViewController: UIViewController {
         presenter.didLoad(ui: self)
         setupTitle()
         setupView()
+        setupNavigationBar()
     }
     
     private func setupTitle() {
@@ -46,6 +47,25 @@ final class EpisodeDetailViewController: UIViewController {
         episodeDetailView.tableView.delegate = self
         episodeDetailView.tableView.register(EpisodeInfoViewCell.self, forCellReuseIdentifier: EpisodeInfoViewCell.identifier)
         episodeDetailView.tableView.register(CharacterViewCell.self, forCellReuseIdentifier: CharacterViewCell.identifier)
+    }
+    
+    private func setupNavigationBar() {
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareLocation))
+        navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    @objc private func shareLocation() {
+        let locationName = presenter.episodeName
+        let locationInfo = presenter.episodenInfo.map { "\($0.title) \($0.value)" }.joined(separator: "\n")
+        var shareText = "\(TextData.shareEpisode.rawValue) \(locationName)\n\(locationInfo)"
+        
+        let residentNames = (0..<presenter.characterCount).map {
+            presenter.getCharacterInfo(for: presenter.getCharacters(at: $0)).name
+        }.joined(separator: ", ")
+        shareText += "\(TextData.shareHaveCharacters.rawValue)\(residentNames)"
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 

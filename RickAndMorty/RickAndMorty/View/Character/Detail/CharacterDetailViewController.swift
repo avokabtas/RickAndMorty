@@ -35,6 +35,7 @@ final class CharacterDetailViewController: UIViewController {
         presenter.didLoad(ui: self)
         setupTitle()
         setupView()
+        setupNavigationBar()
     }
     
     private func setupTitle() {
@@ -46,6 +47,20 @@ final class CharacterDetailViewController: UIViewController {
         characterDetailView.tableView.delegate = self
         characterDetailView.tableView.register(CharacterInfoViewCell.self, forCellReuseIdentifier: CharacterInfoViewCell.identifier)
         characterDetailView.tableView.register(CharacterImageViewCell.self, forCellReuseIdentifier: CharacterImageViewCell.identifier)
+    }
+    
+    private func setupNavigationBar() {
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareCharacter))
+        navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    @objc private func shareCharacter() {
+        let characterName = presenter.characterName
+        let characterInfo = presenter.characterInfo.map { "\($0.title) \($0.value)" }.joined(separator: "\n")
+        let shareText = "\(TextData.shareCharacter.rawValue) \(characterName)\n\(characterInfo)"
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 

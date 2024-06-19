@@ -35,6 +35,7 @@ final class LocationDetailViewController: UIViewController {
         presenter.didLoad(ui: self)
         setupTitle()
         setupView()
+        setupNavigationBar()
     }
     
     private func setupTitle() {
@@ -47,6 +48,29 @@ final class LocationDetailViewController: UIViewController {
         locationDetailView.tableView.register(LocationInfoViewCell.self, forCellReuseIdentifier: LocationInfoViewCell.identifier)
         locationDetailView.tableView.register(CharacterViewCell.self, forCellReuseIdentifier: CharacterViewCell.identifier)
         locationDetailView.tableView.register(NoResidentsViewCell.self, forCellReuseIdentifier: NoResidentsViewCell.identifier)
+    }
+    
+    private func setupNavigationBar() {
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareLocation))
+        navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    @objc private func shareLocation() {
+        let locationName = presenter.locationName
+        let locationInfo = presenter.locationInfo.map { "\($0.title) \($0.value)" }.joined(separator: "\n")
+        var shareText = "\(TextData.shareLocation.rawValue) \(locationName)\n\(locationInfo)"
+        
+        if presenter.residentCount > 0 {
+            let residentNames = (0..<presenter.residentCount).map {
+                presenter.getCharacterInfo(for: presenter.getResidents(at: $0)).name
+            }.joined(separator: ", ")
+            shareText += "\(TextData.shareHaveResidents.rawValue)\(residentNames)"
+        } else {
+            shareText += "\(TextData.shareNoResidents.rawValue)"
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
@@ -120,7 +144,7 @@ extension LocationDetailViewController: UITableViewDelegate {
 
 extension LocationDetailViewController {
     private func configureLocationInfoCell(at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationInfoViewCell.identifier, 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationInfoViewCell.identifier,
                                                        for: indexPath) as? LocationInfoViewCell else {
             return UITableViewCell()
         }
@@ -140,7 +164,7 @@ extension LocationDetailViewController {
     }
     
     private func configureCharacterCell(at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterViewCell.identifier, 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterViewCell.identifier,
                                                        for: indexPath) as? CharacterViewCell else {
             return UITableViewCell()
         }

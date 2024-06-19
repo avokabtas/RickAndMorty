@@ -34,7 +34,7 @@ final class CharacterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.didLoad(ui: self)
-        setupNavBar()
+        setupNavigationBar()
         setupSearch()
         setupView()
         changeSegmentControl()
@@ -49,7 +49,7 @@ final class CharacterViewController: UIViewController {
         }
     }
     
-    private func setupNavBar() {
+    private func setupNavigationBar() {
         title = TextData.titleCharacters.rawValue
         NavigationBar().setupColor(for: self)
         navigationItem.searchController = searchController
