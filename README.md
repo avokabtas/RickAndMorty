@@ -53,7 +53,7 @@
 
 ### Вид приложения 
 
-![image]()
+![image](images/rm.gif)
 
 ## The English version
 
@@ -115,5 +115,6 @@ The app uses the MVP (Model-View-Presenter) architecture and includes the follow
 
 ### App Preview
 
+![image](images/rm.gif)
 
 </details>
