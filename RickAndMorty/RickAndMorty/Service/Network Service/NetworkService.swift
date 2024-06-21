@@ -106,7 +106,7 @@ final class NetworkService: INetworkService {
     }
     
     func fetchLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
-        fetchData(endpoint: .location, totalPages: .allLocatios, completion: completion)
+        fetchData(endpoint: .location, totalPages: .allLocations, completion: completion)
     }
     
     func fetchEpisodes(completion: @escaping (Result<[Episode], Error>) -> Void) {

@@ -9,6 +9,6 @@ import Foundation
 
 enum Page: Int, CaseIterable {
     case allCharacters = 42
-    case allLocatios = 7
+    case allLocations = 7
     case allEpisodes = 3
 }
