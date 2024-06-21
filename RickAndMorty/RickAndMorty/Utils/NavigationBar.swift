@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct NavigationBar {
+    /// Устанавливаем цвет заголовка с учетом светлой и темной темы
     func setupColor(for viewController: UIViewController) {
         guard let navigationController = viewController.navigationController else { return }
         

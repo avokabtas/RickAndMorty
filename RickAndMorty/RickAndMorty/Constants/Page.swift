@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Количество страниц в API
 enum Page: Int, CaseIterable {
     case allCharacters = 42
     case allLocations = 7

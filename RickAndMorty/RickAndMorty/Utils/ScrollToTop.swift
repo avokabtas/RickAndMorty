@@ -14,7 +14,7 @@ extension UIViewController {
     }
     
     func setupScrollToTopButton(for tableView: UITableView) {
-        let scrollUpButton = UIBarButtonItem(image: Icon.arrowUP, style: .plain, target: self, action: #selector(scrollToTop))
+        let scrollUpButton = UIBarButtonItem(image: Icon.up, style: .plain, target: self, action: #selector(scrollToTop))
         objc_setAssociatedObject(self, &AssociatedKeys.tableViewKey, tableView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         navigationItem.rightBarButtonItem = scrollUpButton
     }

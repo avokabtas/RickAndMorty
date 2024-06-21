@@ -8,10 +8,12 @@
 import Foundation
 
 enum Table {
+    /// Высота ячеек
     static let characterHeightCell: CGFloat = 120
     static let locationHeightCell: CGFloat = 80
     static let episodeHeightCell: CGFloat = 80
     
+    /// Заголовки для секций
     static let infoSection = "Info"
     static let residentsSection = "Residents"
     static let charactersSection = "Characters"

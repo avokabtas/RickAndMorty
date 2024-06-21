@@ -9,6 +9,7 @@ import Foundation
 import UIKit.UIImage
 
 class CharacterFormatter {
+    /// Получить структурированную информацию для ячейки персонажа
     static func getFormattedCharacterInfo(for character: CharacterEntity) -> (image: UIImage?, name: String, status: String) {
         if let imageData = character.imageData, let image = UIImage(data: imageData) {
             return (image: image, name: character.name, status: character.status)

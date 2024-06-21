@@ -9,6 +9,6 @@ import Foundation
 import UIKit.UIImage
 
 enum Icon {
-    static let arrowUP = UIImage(systemName: "arrow.uturn.up")
+    static let up = UIImage(systemName: "arrow.uturn.up")
     static let defaultImage = UIImage(named: "photo")
 }
