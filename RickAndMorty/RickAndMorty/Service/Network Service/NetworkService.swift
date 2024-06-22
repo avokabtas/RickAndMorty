@@ -16,6 +16,7 @@ protocol INetworkService {
 final class NetworkService: INetworkService {
     private let baseURL = "https://rickandmortyapi.com/api"
     private let session = URLSession.shared
+    private let imageCache = NSCache<NSString, NSData>()
     
     /// Последовательная загрузка данных по страницам API.
     /// - Parameters:
@@ -76,24 +77,30 @@ final class NetworkService: INetworkService {
         
         for (index, character) in characters.enumerated() {
             group.enter()
-            guard let url = URL(string: character.image) else {
+            if let cachedData = imageCache.object(forKey: NSString(string: character.image)) {
+                updatedCharacters[index].imageData = cachedData as Data
                 group.leave()
-                continue
-            }
-            
-            session.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    updatedCharacters[index].imageData = data
+            } else {
+                guard let url = URL(string: character.image) else {
+                    group.leave()
+                    continue
                 }
-                group.leave()
-            }.resume()
+                
+                session.dataTask(with: url) { [weak self] data, response, error in
+                    if let data = data {
+                        self?.imageCache.setObject(data as NSData, forKey: NSString(string: character.image))
+                        updatedCharacters[index].imageData = data
+                    }
+                    group.leave()
+                }.resume()
+            }
         }
         
         group.notify(queue: .main) {
             completion(.success(updatedCharacters))
         }
     }
-    
+
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
         fetchData(endpoint: .character, totalPages: .allCharacters) { [weak self] (result: Result<[Character], Error>) in
             switch result {
