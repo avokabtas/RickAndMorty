@@ -105,7 +105,7 @@ The app uses the MVP (Model-View-Presenter) architecture and includes the follow
 - **View:** Main screens of the application.
 - **Assembly:** Assemblers for creating modules.
 - **Presenter:** Data presentation logic.
-- **Resources:*** Application resources.
+- **Resources:** Application resources.
 
 ### Tech Stack
 
